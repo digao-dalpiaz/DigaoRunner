@@ -47,7 +47,7 @@ namespace DigaoRunnerApp
 
         private int FixLineNumber(int lineNumber)
         {
-            return lineNumber + _fileContents.CodeLineRef + 2;
+            return lineNumber + _fileContents.CodeLineRef + 1;
         }
 
         private string ChangeLineNumber(string msg)
