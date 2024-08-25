@@ -77,7 +77,8 @@ namespace DigaoRunnerApp
 
                 try
                 {
-                    new Engine(_cancellationTokenSource).Execute();
+                    var contents = new ScriptLoader().LoadFile();
+                    new Engine(contents, _cancellationTokenSource).RunScript();
 
                     status = "Successfully completed!";
                     completed = true;

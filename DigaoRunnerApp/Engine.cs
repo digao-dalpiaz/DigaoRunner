@@ -7,86 +7,10 @@ using System.Text.RegularExpressions;
 
 namespace DigaoRunnerApp
 {
-    internal class Engine(CancellationTokenSource _cancellationTokenSource)
+    internal class Engine(FileContents _fileContents, CancellationTokenSource _cancellationTokenSource)
     {
 
-        private FileContents _fileContents;
-
-        class FileContents
-        {
-            public Dictionary<string, string> Variables;
-            public string Code;
-            public int CodeLineRef;
-        }
-
-        public void Execute()
-        {
-            LoadFile();
-            ProcessVariables();
-            RunScript();
-        }
-
-        private void LoadFile()
-        {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Length < 2) throw new ValidationException("Script file not informed");
-
-            string file = args[1];
-            if (!File.Exists(file)) throw new ValidationException("Script file not found: " + file);
-
-            var lines = File.ReadAllLines(file).ToList();
-
-            if (lines.Count == 0) throw new ValidationException("Script file is empty");
-            if (lines[0] != "@DIGAOSCRIPT") throw new ValidationException("Script file is empty");
-
-            lines.RemoveAt(0);
-
-            var codeIndex = lines.IndexOf("@CODE");
-            if (codeIndex == -1) throw new ValidationException("Code identifier not found");
-
-            var code = string.Join(Environment.NewLine, lines[(codeIndex + 1)..]);
-
-            var head = lines[..codeIndex];
-
-            Dictionary<string, string> variables = [];
-            foreach (var line in head.Select(x => x.Trim()))
-            {
-                if (line.StartsWith("//")) continue;
-
-                var separator = line.IndexOf('=');
-                if (separator != -1)
-                {
-                    string name = line[..separator].Trim();
-                    string value = line[(separator + 1)..].Trim();
-
-                    if (variables.ContainsKey(name)) throw new ValidationException($"Header variable '{name}' duplicated");
-
-                    variables.Add(name, value);
-                }
-            }
-
-            _fileContents = new FileContents()
-            {
-                Variables = variables,
-                Code = code,
-                CodeLineRef = codeIndex
-            }; ;
-        }
-
-        private void ProcessVariables()
-        {
-            var variables = _fileContents.Variables;
-
-            if (!variables.TryGetValue("VERSION", out var version)) throw new ValidationException("Version variable not found");
-            if (version != "1") throw new ValidationException("Unsupported script version");
-
-            if (variables.TryGetValue("TITLE", out var title))
-            {
-                LogService.SetTitle(title);
-            }
-        }
-
-        private void RunScript()
+        public void RunScript()
         {
             var scriptOptions = ScriptOptions.Default
                 .AddImports("System.IO")
