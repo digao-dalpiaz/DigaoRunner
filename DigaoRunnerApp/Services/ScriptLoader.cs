@@ -35,9 +35,9 @@ namespace DigaoRunnerApp.Services
             };
         }
 
-        private Dictionary<string, string> ReadVariables(List<string> head)
+        private Variables ReadVariables(List<string> head)
         {
-            Dictionary<string, string> variables = [];
+            Variables variables = [];
             foreach (var line in head.Select(x => x.Trim()))
             {
                 if (line.StartsWith("//")) continue;
@@ -57,7 +57,7 @@ namespace DigaoRunnerApp.Services
             return variables;
         }
 
-        private void ProcessVariables(Dictionary<string, string> variables)
+        private void ProcessVariables(Variables variables)
         {
             if (!variables.TryGetValue("VERSION", out var version)) throw new ValidationException("Version variable not found");
             if (version != "1") throw new ValidationException("Unsupported script version");

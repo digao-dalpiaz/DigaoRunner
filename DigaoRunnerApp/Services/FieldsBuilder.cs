@@ -97,7 +97,7 @@ namespace DigaoRunnerApp.Services
     }
     public class Fields : List<Field>
     {
-        public ResolvedFields ToDictionary()
+        public ResolvedFields ReadFieldsFromPanel()
         {
             ResolvedFields dic = [];
 

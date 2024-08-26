@@ -108,7 +108,7 @@ namespace DigaoRunnerApp
             UpdateClock();
             timerControl.Enabled = true;
 
-            var resolvedFields = _fields?.ToDictionary();
+            var resolvedFields = _fields?.ReadFieldsFromPanel();
 
             Task.Run(() =>
             {
