@@ -32,6 +32,8 @@ namespace DigaoRunnerApp
             btnRun.Enabled = false;
             btnCancel.Enabled = false;
 
+            stStatus.Text = null;
+
             progressBar.Visible = false;
             UpdateClock();
 
@@ -72,7 +74,7 @@ namespace DigaoRunnerApp
         private void FrmMain_Load(object sender, EventArgs e)
         {
             LoadReg();
-
+            
             try
             {
                 _fileContents = ScriptLoader.LoadFile();
@@ -115,6 +117,8 @@ namespace DigaoRunnerApp
         {
             _running = true;
             LogService.SetStatus("Initializing...", StatusType.WAIT);
+
+            btnCancel.Enabled = true;
 
             _stopwatch.Start();
             UpdateClock();
