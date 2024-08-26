@@ -32,6 +32,7 @@ namespace DigaoRunnerApp.Services
 
             return new FileContents()
             {
+                Path = file,
                 Vars = variables,
                 Fields = fields,
                 Code = code,

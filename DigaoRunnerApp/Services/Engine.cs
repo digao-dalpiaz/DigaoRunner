@@ -11,6 +11,9 @@ namespace DigaoRunnerApp.Services
 
         public void RunScript()
         {
+            string scriptDirectory = Path.GetDirectoryName(_fileContents.Path);
+            Directory.SetCurrentDirectory(scriptDirectory);
+
             var scriptOptions = ScriptOptions.Default
                 .WithReferences([
                     "System.Drawing",

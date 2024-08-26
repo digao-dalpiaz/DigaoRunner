@@ -6,6 +6,8 @@ namespace DigaoRunnerApp.Model
 {
     public class FileContents
     {
+        public string Path { get; set; }
+
         public Variables Vars { get; set; }
         public List<Field> Fields { get; set; }
         public string Code { get; set; }
