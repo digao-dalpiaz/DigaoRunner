@@ -31,6 +31,7 @@ namespace DigaoRunnerApp
             btnRun.Enabled = false;
             btnCancel.Enabled = false;
 
+            stAdmin.Visible = AdminRights.IsRunningAsAdministrator();
             stStatus.Text = null;
 
             progressBar.Visible = false;
@@ -102,7 +103,7 @@ namespace DigaoRunnerApp
             string title = _fileContents.GetVar("TITLE");
             if (!string.IsNullOrEmpty(title)) this.Text = title;
 
-            if (_fileContents.GetVar("ADMIN") == "true" && !AdminRights.IsRunningAsAdministrator())
+            if (_fileContents.GetVar("ADMIN") == "true" && !stAdmin.Visible)
             {
                 try
                 {

@@ -44,6 +44,7 @@
             timerControl = new System.Windows.Forms.Timer(components);
             images = new ImageList(components);
             boxFields = new Panel();
+            stAdmin = new ToolStripStatusLabel();
             statusBar.SuspendLayout();
             buttonBar.SuspendLayout();
             SuspendLayout();
@@ -66,7 +67,7 @@
             // statusBar
             // 
             statusBar.ImageScalingSize = new Size(20, 20);
-            statusBar.Items.AddRange(new ToolStripItem[] { stDigaoDalpiaz, stVersion, stElapsed, stStatus, progressBar });
+            statusBar.Items.AddRange(new ToolStripItem[] { stDigaoDalpiaz, stVersion, stAdmin, stElapsed, stStatus, progressBar });
             statusBar.Location = new Point(0, 502);
             statusBar.Name = "statusBar";
             statusBar.Size = new Size(987, 26);
@@ -166,6 +167,13 @@
             boxFields.Size = new Size(987, 475);
             boxFields.TabIndex = 3;
             // 
+            // stAdmin
+            // 
+            stAdmin.ForeColor = Color.FromArgb(192, 0, 192);
+            stAdmin.Name = "stAdmin";
+            stAdmin.Size = new Size(53, 20);
+            stAdmin.Text = "Admin";
+            // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -202,5 +210,6 @@
         public Panel boxFields;
         public ImageList images;
         private ToolStripStatusLabel stDigaoDalpiaz;
+        private ToolStripStatusLabel stAdmin;
     }
 }

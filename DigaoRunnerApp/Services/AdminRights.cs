@@ -17,7 +17,7 @@ namespace DigaoRunnerApp.Services
             var startInfo = new ProcessStartInfo
             {
                 FileName = Environment.ProcessPath,
-                Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1)),
+                Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1).Select(x => $"\"{x}\"")),
                 Verb = "runas",
                 UseShellExecute = true
             };
