@@ -34,6 +34,7 @@
             statusBar = new StatusStrip();
             stDigaoDalpiaz = new ToolStripStatusLabel();
             stVersion = new ToolStripStatusLabel();
+            stAdmin = new ToolStripStatusLabel();
             stElapsed = new ToolStripStatusLabel();
             stStatus = new ToolStripStatusLabel();
             progressBar = new ToolStripProgressBar();
@@ -44,7 +45,6 @@
             timerControl = new System.Windows.Forms.Timer(components);
             images = new ImageList(components);
             boxFields = new Panel();
-            stAdmin = new ToolStripStatusLabel();
             statusBar.SuspendLayout();
             buttonBar.SuspendLayout();
             SuspendLayout();
@@ -87,6 +87,14 @@
             stVersion.Name = "stVersion";
             stVersion.Size = new Size(57, 20);
             stVersion.Text = "Version";
+            // 
+            // stAdmin
+            // 
+            stAdmin.ForeColor = Color.FromArgb(192, 0, 192);
+            stAdmin.Image = (Image)resources.GetObject("stAdmin.Image");
+            stAdmin.Name = "stAdmin";
+            stAdmin.Size = new Size(73, 20);
+            stAdmin.Text = "Admin";
             // 
             // stElapsed
             // 
@@ -166,13 +174,6 @@
             boxFields.Name = "boxFields";
             boxFields.Size = new Size(987, 475);
             boxFields.TabIndex = 3;
-            // 
-            // stAdmin
-            // 
-            stAdmin.ForeColor = Color.FromArgb(192, 0, 192);
-            stAdmin.Name = "stAdmin";
-            stAdmin.Size = new Size(53, 20);
-            stAdmin.Text = "Admin";
             // 
             // FrmMain
             // 
