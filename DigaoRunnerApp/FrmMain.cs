@@ -55,7 +55,7 @@ namespace DigaoRunnerApp
 
             edLog.Font = new Font(
                 (string)key.GetValue("FontName", LogService.DEFAULT_FONT),
-                float.Parse((string)key.GetValue("FontSize", LogService.DEFAULT_SIZE)));
+                float.Parse((string)key.GetValue("FontSize", LogService.DEFAULT_SIZE.ToString())));
 
             LogService.Colors = new()
             {
@@ -139,8 +139,7 @@ namespace DigaoRunnerApp
 
             foreach (var field in _fileContents.Fields)
             {
-                var prop = field.Control.GetType().GetProperty(field.ValueProp);
-                dic.Add(field.Name, prop.GetValue(field.Control));
+                dic.Add(field.Name, field.PropInfo.GetValue(field.Control));
             }
 
             return dic;

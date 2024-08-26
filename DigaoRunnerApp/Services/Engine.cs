@@ -17,6 +17,7 @@ namespace DigaoRunnerApp.Services
                     "System.IO.Compression.ZipFile" //ZipFile needs this to work
                 ])
                 .WithImports([
+                    "System",
                     "System.IO", //ref not required
                     "System.IO.Compression",
                     "System.Drawing",

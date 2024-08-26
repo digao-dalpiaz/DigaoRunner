@@ -9,6 +9,8 @@ namespace DigaoRunnerApp.Services
     public class ScriptFunctions(CancellationToken _stopToken, ResolvedFields _resolvedFields)
     {
 
+        private Encoding _consoleEncoding = Encoding.UTF8;
+
         public class AbortException(string message) : Exception(message)
         {
         }
@@ -75,7 +77,7 @@ namespace DigaoRunnerApp.Services
             }
         }
 
-        public int RunProcess(string fileName, string arguments)
+        public void SetSystemConsoleEncoding()
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -83,6 +85,11 @@ namespace DigaoRunnerApp.Services
             var codePage = int.Parse((string)reg.GetValue("OEMCP"));
             var systemEncoding = Encoding.GetEncoding(codePage);
 
+            _consoleEncoding = systemEncoding;
+        }
+
+        public int RunProcess(string fileName, string arguments)
+        {
             var processInfo = new ProcessStartInfo
             {
                 FileName = fileName,
@@ -92,8 +99,8 @@ namespace DigaoRunnerApp.Services
                 UseShellExecute = false,
                 CreateNoWindow = true,
 
-                StandardOutputEncoding = systemEncoding,
-                StandardErrorEncoding = systemEncoding
+                StandardOutputEncoding = _consoleEncoding,
+                StandardErrorEncoding = _consoleEncoding
             };
 
             using Process p = new();

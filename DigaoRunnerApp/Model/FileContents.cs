@@ -1,8 +1,13 @@
-﻿namespace DigaoRunnerApp.Model
+﻿using DigaoRunnerApp.Services;
+using System.Reflection;
+using System.Text.Json.Serialization;
+
+namespace DigaoRunnerApp.Model
 {
     public class FileContents
     {
         public Variables Vars { get; set; }
+        public List<Field> Fields { get; set; }
         public string Code { get; set; }
         public int CodeLineRef { get; set; }
 
@@ -14,12 +19,25 @@
             return null;
         }
 
-        public List<Field> Fields { get; set; }
         public class Field
         {
-            public Control Control;
+            [JsonIgnore]
             public string Name;
-            public string ValueProp;
+
+            public string Label;
+            public string Type;
+            public object Default;
+            public string[] Items;
+            public bool Editable;
+
+            [JsonIgnore]
+            public PropertyInfo PropInfo;
+
+            [JsonIgnore]
+            public Control Control;
+
+            [JsonIgnore]
+            public FieldsBuilder.DefControlType DefControlType;
         }
     }
 }

@@ -1,73 +1,54 @@
-﻿using DigaoRunnerApp.Exceptions;
-using DigaoRunnerApp.Model;
+﻿using DigaoRunnerApp.Model;
 
 namespace DigaoRunnerApp.Services
 {
     public class FieldsBuilder(FileContents _fileContents)
     {
 
-        public void BuildScreen()
+        public class DefControlType
         {
-            _fileContents.Fields = [];
+            public string Type;
+            public Type Class;
+            public string ValueProp;
+        }
 
+        public readonly static List<DefControlType> DEF_CONTROLS =
+        [
+            new() { Type = "text", Class = typeof(TextBox), ValueProp = "Text" },
+            new() { Type = "check", Class = typeof(CheckBox), ValueProp = "Checked" },
+            new() { Type = "combo", Class = typeof(ComboBox), ValueProp = "Text" },
+        ];
+
+        public void BuildScreen()
+        { 
             var panel = LogService.Form.boxFields;
 
             int y = 20;
-            foreach (var item in _fileContents.Vars.Where(x => x.Key.StartsWith('$')))
+            foreach (var field in _fileContents.Fields)
             {
-                var parts = item.Value.Split("|");
+                var control = (Control)Activator.CreateInstance(field.DefControlType.Class);
+                field.Control = control;
 
-                string name = item.Key[1..];
-                string defaultValue = parts.Length > 2 ? parts[2] : null;
-                Control control;
-
-                string valueProp;
-
-                if (parts.Length < 2) throw new ValidationException($"Field '{item.Key}' must contain at least two value parameters");
-
-                var type = parts[1];
-                switch (type)
+                if (control is CheckBox check)
                 {
-                    case "text":
-                        TextBox ed = new();
-                        control = ed;
-                        ed.Width = 500;
-                        ed.Text = defaultValue;
-
-                        valueProp = "Text";
-                        break;
-
-                    case "check":
-                        CheckBox ck = new();
-                        control = ck;
-                        ck.Text = parts[0];
-                        ck.Checked = defaultValue == "true";
-
-                        valueProp = "Checked";
-                        break;
-
-                    case "combo":
-                        ComboBox combo = new();
-                        control = combo;
-                        combo.Width = 500;
-                        if (parts.Length > 3) combo.Items.AddRange(parts[3].Split(","));
-                        combo.Text = defaultValue;
-
-                        valueProp = "Text";
-                        break;
-
-                    default:
-                        throw new ValidationException($"Field '{item.Key}' contains invalid type '{type}'");
+                    check.Text = field.Label;
                 }
-
-                if (control is not CheckBox)
+                else
                 {
+                    if (control is ComboBox combo)
+                    {
+                        combo.Items.AddRange(field.Items);
+                        combo.DropDownStyle = field.Editable ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList;
+                    }
+
                     Label lb = new();
                     lb.Parent = panel;
                     lb.Left = 17;
                     lb.Top = y;
-                    lb.Text = parts[0];
+                    lb.Text = field.Label;
                     lb.AutoSize = true;
+
+                    control.Width = 500;
 
                     y = lb.Bottom + 2;
                 }
@@ -77,12 +58,7 @@ namespace DigaoRunnerApp.Services
                 control.Top = y;
                 y = control.Bottom + 20;
 
-                _fileContents.Fields.Add(new FileContents.Field
-                {
-                    Name = name,
-                    Control = control,
-                    ValueProp = valueProp
-                });
+                if (field.Default != null) field.PropInfo.SetValue(control, field.Default);
             }
         }
 

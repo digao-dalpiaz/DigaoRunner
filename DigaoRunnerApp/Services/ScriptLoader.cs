@@ -1,5 +1,7 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
+using Newtonsoft.Json;
+using static DigaoRunnerApp.Model.FileContents;
 
 namespace DigaoRunnerApp.Services
 {
@@ -26,18 +28,20 @@ namespace DigaoRunnerApp.Services
             var code = string.Join(Environment.NewLine, lines[(codeIndex + 1)..]);
 
             var variables = ReadVariables(head);
+            var fields = ReadFields(variables);
 
             return new FileContents()
             {
                 Vars = variables,
+                Fields = fields,
                 Code = code,
                 CodeLineRef = codeIndex
             };
         }
 
-        private static FileContents.Variables ReadVariables(List<string> head)
+        private static Variables ReadVariables(List<string> head)
         {
-            FileContents.Variables variables = new();
+            Variables variables = new();
             foreach (var line in head.Select(x => x.Trim()))
             {
                 if (line.StartsWith("//")) continue;
@@ -47,6 +51,8 @@ namespace DigaoRunnerApp.Services
                 {
                     string name = line[..separator].Trim();
                     string value = line[(separator + 1)..].Trim();
+
+                    if (name.Contains(' ')) throw new ValidationException($"Header variable '{name}' must not contain spaces");
 
                     if (variables.ContainsKey(name)) throw new ValidationException($"Header variable '{name}' duplicated");
 
@@ -59,6 +65,49 @@ namespace DigaoRunnerApp.Services
             if (version != "1") throw new ValidationException("Unsupported script version");
 
             return variables;
+        }
+
+        private static List<Field> ReadFields(Variables variables)
+        {
+            List<Field> fields = [];
+
+            foreach (var variable in variables.Where(x => x.Key.StartsWith('$')))
+            {
+                try
+                {
+                    Field field;
+                    try
+                    {
+                        field = JsonConvert.DeserializeObject<Field>(variable.Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ValidationException("Error reading JSON: " + ex.Message);
+                    }
+                    field.Name = variable.Key[1..];
+                    fields.Add(field);
+
+                    var defControlType = FieldsBuilder.DEF_CONTROLS.Find(x => x.Type == field.Type);
+                    if (defControlType == null) throw new ValidationException($"Invalid type '{field.Type}'");
+
+                    field.DefControlType = defControlType;
+
+                    var propInfo = defControlType.Class.GetProperty(defControlType.ValueProp);
+                    field.PropInfo = propInfo;
+                    if (field.Default != null)
+                    {
+                        if (field.Default.GetType() != propInfo.PropertyType) 
+                            throw new ValidationException($"Expected default value of type '{propInfo.PropertyType}', but found '{field.Default.GetType()}' instead");
+                    }
+                }
+                catch (ValidationException ex) 
+                {
+                    throw new ValidationException($"Failed to read field '{variable.Key}': {ex.Message}");
+                }
+                
+            }
+
+            return fields;
         }
 
     }
