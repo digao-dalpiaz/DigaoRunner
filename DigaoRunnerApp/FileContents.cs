@@ -1,6 +1,6 @@
 ﻿namespace DigaoRunnerApp
 {
-    internal class FileContents
+    public class FileContents
     {
         public Dictionary<string, string> Variables;
         public string Code;

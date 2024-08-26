@@ -37,10 +37,12 @@
             stStatus = new ToolStripStatusLabel();
             progressBar = new ToolStripProgressBar();
             buttonBar = new ToolStrip();
+            btnRun = new ToolStripButton();
             btnCancel = new ToolStripButton();
             btnFont = new ToolStripButton();
             timerControl = new System.Windows.Forms.Timer(components);
             images = new ImageList(components);
+            boxFields = new Panel();
             statusBar.SuspendLayout();
             buttonBar.SuspendLayout();
             SuspendLayout();
@@ -96,12 +98,21 @@
             // buttonBar
             // 
             buttonBar.ImageScalingSize = new Size(20, 20);
-            buttonBar.Items.AddRange(new ToolStripItem[] { btnCancel, btnFont });
+            buttonBar.Items.AddRange(new ToolStripItem[] { btnRun, btnCancel, btnFont });
             buttonBar.Location = new Point(0, 0);
             buttonBar.Name = "buttonBar";
             buttonBar.Size = new Size(987, 27);
             buttonBar.TabIndex = 2;
             buttonBar.Text = "toolStrip1";
+            // 
+            // btnRun
+            // 
+            btnRun.Image = (Image)resources.GetObject("btnRun.Image");
+            btnRun.ImageTransparentColor = Color.Magenta;
+            btnRun.Name = "btnRun";
+            btnRun.Size = new Size(100, 24);
+            btnRun.Text = "Run Script";
+            btnRun.Click += btnRun_Click;
             // 
             // btnCancel
             // 
@@ -134,6 +145,16 @@
             images.Images.SetKeyName(0, "wait");
             images.Images.SetKeyName(1, "ok");
             images.Images.SetKeyName(2, "error");
+            images.Images.SetKeyName(3, "bell");
+            // 
+            // boxFields
+            // 
+            boxFields.BackColor = SystemColors.Info;
+            boxFields.Dock = DockStyle.Fill;
+            boxFields.Location = new Point(0, 27);
+            boxFields.Name = "boxFields";
+            boxFields.Size = new Size(987, 475);
+            boxFields.TabIndex = 3;
             // 
             // FrmMain
             // 
@@ -141,6 +162,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(987, 528);
             Controls.Add(edLog);
+            Controls.Add(boxFields);
             Controls.Add(buttonBar);
             Controls.Add(statusBar);
             Name = "FrmMain";
@@ -166,6 +188,8 @@
         private ToolStripStatusLabel stVersion;
         private ToolStripButton btnFont;
         public ToolStripStatusLabel stStatus;
-        private ImageList images;
+        private ToolStripButton btnRun;
+        public Panel boxFields;
+        public ImageList images;
     }
 }

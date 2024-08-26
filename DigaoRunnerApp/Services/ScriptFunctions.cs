@@ -2,8 +2,10 @@
 
 namespace DigaoRunnerApp.Services
 {
-    public class ScriptFunctions(CancellationToken stopToken)
+    public class ScriptFunctions(CancellationToken _stopToken, ResolvedFields _resolvedFields)
     {
+
+        public readonly ResolvedFields Fields = _resolvedFields;
 
         public void Echo(string text, Color? color = null)
         {
@@ -19,7 +21,7 @@ namespace DigaoRunnerApp.Services
 
         public void CheckStop()
         {
-            if (stopToken.IsCancellationRequested) throw new CancelException("Script cancelled");
+            if (_stopToken.IsCancellationRequested) throw new CancelException("Script cancelled");
         }
 
         public void CopyFile(string sourceFilePath, string destinationFilePath)

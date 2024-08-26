@@ -5,19 +5,14 @@
 
         public static FrmMain Form { get; set; }
 
-        public static void SetTitle(string title)
-        {
-            Form.Invoke(() => 
-            {
-                Form.Text = title;
-            });
-        }
 
-        public static void SetStatus(string status)
+        public static void SetStatus(string status, StatusType type)
         {
             Form.Invoke(() =>
             {
                 Form.stStatus.Text = status;
+                Form.stStatus.ForeColor = type == StatusType.OK ? Color.Green : type == StatusType.ERROR ? Color.Red : SystemColors.ControlText;
+                Form.stStatus.Image = Form.images.Images[(int)type];
             });
         }
 
@@ -51,9 +46,8 @@
 
     }
 
-    public enum LogType
+    public enum StatusType
     {
-        NORMAL,
-        ERROR
+        WAIT=0, OK=1, ERROR=2, BELL=3
     }
 }

@@ -17,7 +17,7 @@ namespace DigaoRunnerApp
             var lines = File.ReadAllLines(file).ToList();
 
             if (lines.Count == 0) throw new ValidationException("Script file is empty");
-            if (lines[0] != "@DIGAOSCRIPT") throw new ValidationException("Script file is empty");
+            if (lines[0] != "@DIGAOSCRIPT") throw new ValidationException("Invalid first line identifier");
 
             var codeIndex = lines.IndexOf("@CODE");
             if (codeIndex == -1) throw new ValidationException("Code identifier not found");
@@ -65,7 +65,7 @@ namespace DigaoRunnerApp
 
             if (variables.TryGetValue("TITLE", out var title))
             {
-                LogService.SetTitle(title);
+                LogService.Form.Text = title;
             }
         }
 

@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace DigaoRunnerApp
 {
-    internal class Engine(FileContents _fileContents, CancellationTokenSource _cancellationTokenSource)
+    internal class Engine(FileContents _fileContents, ResolvedFields _resolvedFields, CancellationTokenSource _cancellationTokenSource)
     {
 
         public void RunScript()
@@ -19,14 +19,14 @@ namespace DigaoRunnerApp
                 .AddReferences(typeof(AbortException).Assembly)
                 .WithEmitDebugInformation(true);
 
-            ScriptFunctions functions = new(_cancellationTokenSource.Token);
+            ScriptFunctions functions = new(_cancellationTokenSource.Token, _resolvedFields);
 
             var script = CSharpScript.Create(code: _fileContents.Code, options: scriptOptions, globalsType: typeof(ScriptFunctions));
 
-            LogService.SetStatus("Compiling...");
+            LogService.SetStatus("Compiling...", StatusType.WAIT);
             script.Compile();
 
-            LogService.SetStatus("Running...");
+            LogService.SetStatus("Running...", StatusType.WAIT);
             try
             {
                 var state = script.RunAsync(globals: functions);

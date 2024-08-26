@@ -13,6 +13,8 @@ namespace DigaoRunnerApp
         private const string REG_KEY = @"SOFTWARE\DigaoRunner";
 
         private bool _running;
+        private FileContents _fileContents;
+        private Fields _fields;
 
         private readonly CancellationTokenSource _cancellationTokenSource = new();
 
@@ -25,9 +27,13 @@ namespace DigaoRunnerApp
             stVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Icon = Icon.ExtractAssociatedIcon(Process.GetCurrentProcess().MainModule.FileName);
 
-            stStatus.Text = null;
-            stElapsed.Text = null;
+            ChangePage(false);
+
+            btnRun.Enabled = false;
+            btnCancel.Enabled = false;
+
             progressBar.Visible = false;
+            UpdateClock();
 
             LogService.Form = this;
         }
@@ -45,7 +51,7 @@ namespace DigaoRunnerApp
         {
             var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
             edLog.Font = new Font(
-                (string)key.GetValue("FontName", edLog.Font.Name), 
+                (string)key.GetValue("FontName", edLog.Font.Name),
                 float.Parse((string)key.GetValue("FontSize", edLog.Font.Size)));
         }
 
@@ -57,17 +63,52 @@ namespace DigaoRunnerApp
             key.SetValue("FontSize", edLog.Font.Size);
         }
 
+        private void ChangePage(bool fieldsPage)
+        {
+            boxFields.Visible = fieldsPage;
+            edLog.Visible = !fieldsPage;
+        }
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             LoadReg();
 
+            try
+            {
+                _fileContents = new ScriptLoader().LoadFile();
+            }
+            catch (ValidationException ex)
+            {
+                LogService.Log("ERROR LOADING SCRIPT: " + ex.Message, Color.Crimson);
+                LogService.SetStatus("Script validation error", StatusType.ERROR);
+                return;
+            }
+
+            if (_fileContents.Variables.Any(x => x.Key.StartsWith('$')))
+            {
+                _fields = new FieldsBuilder(_fileContents).Build();
+
+                LogService.SetStatus("Please fill initial parameters", StatusType.BELL);
+                ChangePage(true);
+
+                btnRun.Enabled = true;
+            }
+            else
+            {
+                Run();
+            }
+        }
+
+        private void Run()
+        {
             _running = true;
-            stStatus.Text = "Initializing...";
-            stStatus.Image = images.Images[0];
+            LogService.SetStatus("Initializing...", StatusType.WAIT);
 
             _stopwatch.Start();
             UpdateClock();
             timerControl.Enabled = true;
+
+            var resolvedFields = _fields?.ToDictionary();
 
             Task.Run(() =>
             {
@@ -77,16 +118,10 @@ namespace DigaoRunnerApp
 
                 try
                 {
-                    var contents = new ScriptLoader().LoadFile();
-                    new Engine(contents, _cancellationTokenSource).RunScript();
+                    new Engine(_fileContents, resolvedFields, _cancellationTokenSource).RunScript();
 
                     status = "Successfully completed!";
                     completed = true;
-                }
-                catch (ValidationException ex)
-                {
-                    logError = ex.Message;
-                    status = "Script validation error";
                 }
                 catch (AbortException ex)
                 {
@@ -109,14 +144,12 @@ namespace DigaoRunnerApp
                     status = "Fatal error";
                 }
 
+                LogService.SetStatus(status, completed ? StatusType.OK : StatusType.ERROR);
                 if (logError != null) LogService.Log(logError, Color.Crimson);
-                
+
                 Invoke(() =>
                 {
                     _running = false;
-                    stStatus.Text = status;
-                    stStatus.ForeColor = completed ? Color.Green : Color.Red;
-                    stStatus.Image = images.Images[completed ? 1 : 2];
 
                     btnCancel.Enabled = false;
 
@@ -155,5 +188,11 @@ namespace DigaoRunnerApp
             }
         }
 
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            btnRun.Enabled = false;
+            ChangePage(false);
+            Run();
+        }
     }
 }
