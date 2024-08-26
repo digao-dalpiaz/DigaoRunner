@@ -69,7 +69,7 @@ namespace DigaoRunnerApp.Services
                     lb.Text = parts[0];
                     lb.AutoSize = true;
 
-                    y = lb.Bottom;
+                    y = lb.Bottom + 2;
                 }
 
                 control.Parent = panel;
