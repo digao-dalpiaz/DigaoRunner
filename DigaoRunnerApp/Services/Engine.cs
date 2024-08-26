@@ -1,11 +1,10 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.ScriptContext;
-using DigaoRunnerApp.Services;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Text.RegularExpressions;
 
-namespace DigaoRunnerApp
+namespace DigaoRunnerApp.Services
 {
     internal class Engine(FileContents _fileContents, ResolvedFields _resolvedFields, CancellationTokenSource _cancellationTokenSource)
     {

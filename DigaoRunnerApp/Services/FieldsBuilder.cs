@@ -1,7 +1,6 @@
 ﻿using DigaoRunnerApp.Exceptions;
-using DigaoRunnerApp.Services;
 
-namespace DigaoRunnerApp
+namespace DigaoRunnerApp.Services
 {
     public class FieldsBuilder(FileContents _fileContents)
     {
