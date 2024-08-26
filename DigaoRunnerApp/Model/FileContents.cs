@@ -1,4 +1,4 @@
-﻿namespace DigaoRunnerApp
+﻿namespace DigaoRunnerApp.Model
 {
     public class FileContents
     {

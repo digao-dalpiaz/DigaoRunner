@@ -1,4 +1,5 @@
 ﻿using DigaoRunnerApp.Exceptions;
+using DigaoRunnerApp.Model;
 using DigaoRunnerApp.ScriptContext;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;

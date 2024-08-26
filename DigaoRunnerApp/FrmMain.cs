@@ -1,4 +1,5 @@
 using DigaoRunnerApp.Exceptions;
+using DigaoRunnerApp.Model;
 using DigaoRunnerApp.ScriptContext;
 using DigaoRunnerApp.Services;
 using Microsoft.Win32;

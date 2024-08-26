@@ -1,4 +1,5 @@
 ﻿using DigaoRunnerApp.Exceptions;
+using DigaoRunnerApp.Model;
 
 namespace DigaoRunnerApp.Services
 {
