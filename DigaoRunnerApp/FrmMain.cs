@@ -84,10 +84,9 @@ namespace DigaoRunnerApp
                 return;
             }
 
-            if (_fileContents.Vars.Any(x => x.Key.StartsWith('$')))
+            _fields = new FieldsBuilder(_fileContents).Build();
+            if (_fields.Count > 0) 
             {
-                _fields = new FieldsBuilder(_fileContents).Build();
-
                 LogService.SetStatus("Please fill initial parameters", StatusType.BELL);
                 ChangePage(true);
 
@@ -108,7 +107,7 @@ namespace DigaoRunnerApp
             UpdateClock();
             timerControl.Enabled = true;
 
-            var resolvedFields = _fields?.ReadFieldsFromPanel();
+            var resolvedFields = _fields.ReadFieldsFromPanel();
 
             Task.Run(() =>
             {
