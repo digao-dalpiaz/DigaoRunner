@@ -6,7 +6,15 @@ namespace DigaoRunnerApp.Services
     public class ScriptFunctions(CancellationToken _stopToken, ResolvedFields _resolvedFields)
     {
 
-        public readonly ResolvedFields Fields = _resolvedFields;
+        public object GetField(string name)
+        {
+            if (!_resolvedFields.TryGetValue(name, out var value))
+            {
+                throw new KeyNotFoundException($"Field '{name}' not found");
+            }
+
+            return value;
+        }
 
         public void Echo(string text, Color? color = null)
         {

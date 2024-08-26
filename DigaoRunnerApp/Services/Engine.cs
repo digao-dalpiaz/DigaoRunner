@@ -3,6 +3,7 @@ using DigaoRunnerApp.Model;
 using DigaoRunnerApp.ScriptContext;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using System.IO.Compression;
 using System.Text.RegularExpressions;
 
 namespace DigaoRunnerApp.Services
@@ -14,9 +15,11 @@ namespace DigaoRunnerApp.Services
         {
             var scriptOptions = ScriptOptions.Default
                 .AddImports("System.IO")
+                .AddImports("System.IO.Compression")
                 .AddImports("System.Drawing")
                 .AddImports("DigaoRunnerApp.ScriptContext")
                 .AddReferences(typeof(AbortException).Assembly)
+                .AddReferences(typeof(ZipFile).Assembly)
                 .WithEmitDebugInformation(true);
 
             ScriptFunctions functions = new(_cancellationTokenSource.Token, _resolvedFields);
