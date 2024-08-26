@@ -12,7 +12,7 @@ namespace DigaoRunnerApp.Services
             var panel = LogService.Form.boxFields;
 
             int y = 20;
-            foreach (var item in _fileContents.Variables.Where(x => x.Key.StartsWith("$")))
+            foreach (var item in _fileContents.Vars.Where(x => x.Key.StartsWith('$')))
             {
                 var parts = item.Value.Split("|");
 

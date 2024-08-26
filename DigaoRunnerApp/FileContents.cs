@@ -2,10 +2,10 @@
 {
     public class FileContents
     {
-        public Variables Variables;
+        public Variables Vars;
         public string Code;
         public int CodeLineRef;
-    }
 
-    public class Variables : Dictionary<string, string>;
+        public class Variables : Dictionary<string, string>;
+    }
 }

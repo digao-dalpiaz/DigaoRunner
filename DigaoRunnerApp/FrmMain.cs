@@ -84,7 +84,7 @@ namespace DigaoRunnerApp
                 return;
             }
 
-            if (_fileContents.Variables.Any(x => x.Key.StartsWith('$')))
+            if (_fileContents.Vars.Any(x => x.Key.StartsWith('$')))
             {
                 _fields = new FieldsBuilder(_fileContents).Build();
 
