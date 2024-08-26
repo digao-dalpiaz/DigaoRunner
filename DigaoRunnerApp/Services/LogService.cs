@@ -3,11 +3,11 @@
     public class LogService
     {
 
-        public static string DEFAULT_FONT = "Consolas";
-        public static float DEFAULT_SIZE = 12;
-        public static Color DEFAULT_COLOR_NORMAL = Color.LimeGreen;
-        public static Color DEFAULT_COLOR_ERROR = Color.Crimson;
-        public static Color DEFAULT_COLOR_BACK = Color.FromArgb(30, 30, 30);
+        public readonly static string DEFAULT_FONT = "Consolas";
+        public readonly static float DEFAULT_SIZE = 12;
+        public readonly static Color DEFAULT_COLOR_NORMAL = Color.LimeGreen;
+        public readonly static Color DEFAULT_COLOR_ERROR = Color.Crimson;
+        public readonly static Color DEFAULT_COLOR_BACK = Color.FromArgb(30, 30, 30);
 
         public static FrmMain Form { get; set; }
 
