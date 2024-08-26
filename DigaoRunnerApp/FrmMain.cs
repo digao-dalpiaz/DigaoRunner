@@ -225,7 +225,7 @@ namespace DigaoRunnerApp
             stElapsed.Text = "Elapsed: " + _stopwatch.Elapsed.ToString("d\\.hh\\:mm\\:ss");
         }
 
-        private void btnFont_Click(object sender, EventArgs e)
+        private void btnConfig_Click(object sender, EventArgs e)
         {
             var settings = new FrmConfig();
             if (settings.ShowDialog() == DialogResult.OK)

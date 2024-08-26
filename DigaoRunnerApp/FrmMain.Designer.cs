@@ -41,7 +41,7 @@
             buttonBar = new ToolStrip();
             btnRun = new ToolStripButton();
             btnCancel = new ToolStripButton();
-            btnFont = new ToolStripButton();
+            btnConfig = new ToolStripButton();
             timerControl = new System.Windows.Forms.Timer(components);
             images = new ImageList(components);
             boxFields = new Panel();
@@ -114,7 +114,7 @@
             // buttonBar
             // 
             buttonBar.ImageScalingSize = new Size(20, 20);
-            buttonBar.Items.AddRange(new ToolStripItem[] { btnRun, btnCancel, btnFont });
+            buttonBar.Items.AddRange(new ToolStripItem[] { btnRun, btnCancel, btnConfig });
             buttonBar.Location = new Point(0, 0);
             buttonBar.Name = "buttonBar";
             buttonBar.Size = new Size(987, 27);
@@ -139,14 +139,14 @@
             btnCancel.Text = "Cancel";
             btnCancel.Click += btnCancel_Click;
             // 
-            // btnFont
+            // btnConfig
             // 
-            btnFont.Image = (Image)resources.GetObject("btnFont.Image");
-            btnFont.ImageTransparentColor = Color.Magenta;
-            btnFont.Name = "btnFont";
-            btnFont.Size = new Size(86, 24);
-            btnFont.Text = "Settings";
-            btnFont.Click += btnFont_Click;
+            btnConfig.Image = (Image)resources.GetObject("btnConfig.Image");
+            btnConfig.ImageTransparentColor = Color.Magenta;
+            btnConfig.Name = "btnConfig";
+            btnConfig.Size = new Size(86, 24);
+            btnConfig.Text = "Settings";
+            btnConfig.Click += btnConfig_Click;
             // 
             // timerControl
             // 
@@ -202,7 +202,7 @@
         private ToolStripStatusLabel stElapsed;
         public ToolStripProgressBar progressBar;
         private ToolStripStatusLabel stVersion;
-        private ToolStripButton btnFont;
+        private ToolStripButton btnConfig;
         public ToolStripStatusLabel stStatus;
         private ToolStripButton btnRun;
         public Panel boxFields;
