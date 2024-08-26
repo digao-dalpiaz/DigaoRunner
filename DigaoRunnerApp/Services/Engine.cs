@@ -23,6 +23,7 @@ namespace DigaoRunnerApp.Services
                     "System",
                     "System.IO", //ref not required
                     "System.IO.Compression",
+                    "System.Diagnostics",
                     "System.Drawing",
                 ])
                 .WithEmitDebugInformation(true)
