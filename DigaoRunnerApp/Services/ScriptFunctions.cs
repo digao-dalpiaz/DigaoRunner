@@ -36,8 +36,8 @@ namespace DigaoRunnerApp.Services
                 byte[] buffer = new byte[bufferSize];
                 long totalBytes = 0;
 
-                using (FileStream sourceStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
-                using (FileStream destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
+                using (var sourceStream = new FileStream(sourceFilePath, FileMode.Open, FileAccess.Read))
+                using (var destinationStream = new FileStream(destinationFilePath, FileMode.Create, FileAccess.Write))
                 {
                     var fileLength = sourceStream.Length;
 
