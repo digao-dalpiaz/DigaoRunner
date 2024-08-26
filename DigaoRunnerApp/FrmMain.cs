@@ -100,8 +100,7 @@ namespace DigaoRunnerApp
                 return;
             }
 
-            string title = _fileContents.GetVar("TITLE");
-            if (!string.IsNullOrEmpty(title)) this.Text = title;
+            LoadVarsSettings();
 
             if (_fileContents.GetVar("ADMIN") == "true" && !stAdmin.Visible)
             {
@@ -131,6 +130,14 @@ namespace DigaoRunnerApp
             {
                 Run();
             }
+        }
+
+        private void LoadVarsSettings()
+        {
+            string title = _fileContents.GetVar("TITLE");
+            if (!string.IsNullOrEmpty(title)) this.Text = title;
+
+            if (_fileContents.GetVar("MAXIMIZED") == "true") WindowState = FormWindowState.Maximized;
         }
 
         private ResolvedFields ReadFieldsFromPanel()
