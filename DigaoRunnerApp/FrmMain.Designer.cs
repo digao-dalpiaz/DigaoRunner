@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             edLog = new RichTextBox();
             statusBar = new StatusStrip();
+            stDigaoDalpiaz = new ToolStripStatusLabel();
             stVersion = new ToolStripStatusLabel();
             stElapsed = new ToolStripStatusLabel();
             stStatus = new ToolStripStatusLabel();
@@ -65,14 +66,23 @@
             // statusBar
             // 
             statusBar.ImageScalingSize = new Size(20, 20);
-            statusBar.Items.AddRange(new ToolStripItem[] { stVersion, stElapsed, stStatus, progressBar });
+            statusBar.Items.AddRange(new ToolStripItem[] { stDigaoDalpiaz, stVersion, stElapsed, stStatus, progressBar });
             statusBar.Location = new Point(0, 502);
             statusBar.Name = "statusBar";
             statusBar.Size = new Size(987, 26);
             statusBar.TabIndex = 1;
             // 
+            // stDigaoDalpiaz
+            // 
+            stDigaoDalpiaz.IsLink = true;
+            stDigaoDalpiaz.Name = "stDigaoDalpiaz";
+            stDigaoDalpiaz.Size = new Size(105, 20);
+            stDigaoDalpiaz.Text = "Digao Dalpiaz";
+            stDigaoDalpiaz.Click += stDigaoDalpiaz_Click;
+            // 
             // stVersion
             // 
+            stVersion.ForeColor = Color.DimGray;
             stVersion.Name = "stVersion";
             stVersion.Size = new Size(57, 20);
             stVersion.Text = "Version";
@@ -191,5 +201,6 @@
         private ToolStripButton btnRun;
         public Panel boxFields;
         public ImageList images;
+        private ToolStripStatusLabel stDigaoDalpiaz;
     }
 }

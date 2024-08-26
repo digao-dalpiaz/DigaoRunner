@@ -74,7 +74,7 @@ namespace DigaoRunnerApp
         private void FrmMain_Load(object sender, EventArgs e)
         {
             LoadReg();
-            
+
             try
             {
                 _fileContents = ScriptLoader.LoadFile();
@@ -87,7 +87,7 @@ namespace DigaoRunnerApp
             }
 
             new FieldsBuilder(_fileContents).BuildScreen();
-            if (_fileContents.Fields.Count > 0) 
+            if (_fileContents.Fields.Count > 0)
             {
                 LogService.SetStatus("Please fill initial parameters", StatusType.BELL);
                 ChangePage(true);
@@ -209,6 +209,11 @@ namespace DigaoRunnerApp
             btnRun.Enabled = false;
             ChangePage(false);
             Run();
+        }
+
+        private void stDigaoDalpiaz_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", "https://github.com/digao-dalpiaz");
         }
     }
 }
