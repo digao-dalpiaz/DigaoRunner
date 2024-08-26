@@ -88,5 +88,15 @@ namespace DigaoRunnerApp
             }
         }
 
+        private void btnDefaults_Click(object sender, EventArgs e)
+        {
+            edFont.Text = LogService.DEFAULT_FONT;
+            edSize.Text = LogService.DEFAULT_SIZE.ToString();
+
+            boxNormalColor.BackColor = LogService.DEFAULT_COLOR_NORMAL;
+            boxErrorColor.BackColor = LogService.DEFAULT_COLOR_ERROR;
+            boxBackColor.BackColor = LogService.DEFAULT_COLOR_BACK;
+        }
+
     }
 }

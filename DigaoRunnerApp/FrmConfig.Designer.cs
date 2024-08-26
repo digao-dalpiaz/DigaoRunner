@@ -35,6 +35,7 @@
             label3 = new Label();
             label4 = new Label();
             groupBox1 = new GroupBox();
+            btnDefaults = new Button();
             label5 = new Label();
             boxBackColor = new Panel();
             boxErrorColor = new Panel();
@@ -98,6 +99,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnDefaults);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(boxBackColor);
             groupBox1.Controls.Add(boxErrorColor);
@@ -110,10 +112,20 @@
             groupBox1.Controls.Add(edSize);
             groupBox1.Location = new Point(16, 16);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(536, 208);
+            groupBox1.Size = new Size(536, 264);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Console";
+            // 
+            // btnDefaults
+            // 
+            btnDefaults.Location = new Point(24, 200);
+            btnDefaults.Name = "btnDefaults";
+            btnDefaults.Size = new Size(120, 40);
+            btnDefaults.TabIndex = 10;
+            btnDefaults.Text = "Load Defaults";
+            btnDefaults.UseVisualStyleBackColor = true;
+            btnDefaults.Click += btnDefaults_Click;
             // 
             // label5
             // 
@@ -153,7 +165,7 @@
             // 
             // btnOk
             // 
-            btnOk.Location = new Point(160, 232);
+            btnOk.Location = new Point(160, 288);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(120, 40);
             btnOk.TabIndex = 1;
@@ -164,7 +176,7 @@
             // btnCancel
             // 
             btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(288, 232);
+            btnCancel.Location = new Point(288, 288);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(120, 40);
             btnCancel.TabIndex = 2;
@@ -177,7 +189,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(568, 286);
+            ClientSize = new Size(568, 340);
             Controls.Add(btnCancel);
             Controls.Add(btnOk);
             Controls.Add(groupBox1);
@@ -209,5 +221,6 @@
         private Button btnCancel;
         private Label label5;
         private Panel boxBackColor;
+        private Button btnDefaults;
     }
 }

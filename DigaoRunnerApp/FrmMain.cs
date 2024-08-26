@@ -54,16 +54,16 @@ namespace DigaoRunnerApp
             using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
 
             edLog.Font = new Font(
-                (string)key.GetValue("FontName", edLog.Font.Name),
-                float.Parse((string)key.GetValue("FontSize", edLog.Font.Size)));
+                (string)key.GetValue("FontName", LogService.DEFAULT_FONT),
+                float.Parse((string)key.GetValue("FontSize", LogService.DEFAULT_SIZE)));
 
             LogService.Colors = new()
             {
-                Normal = Color.FromArgb((int)key.GetValue("ColorNormal", Color.LimeGreen.ToArgb())),
-                Error = Color.FromArgb((int)key.GetValue("ColorError", Color.Crimson.ToArgb())),
+                Normal = Color.FromArgb((int)key.GetValue("ColorNormal", LogService.DEFAULT_COLOR_NORMAL.ToArgb())),
+                Error = Color.FromArgb((int)key.GetValue("ColorError", LogService.DEFAULT_COLOR_ERROR.ToArgb())),
             };
 
-            edLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", edLog.BackColor.ToArgb()));
+            edLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", LogService.DEFAULT_COLOR_BACK.ToArgb()));
         }
 
         private void SaveReg()
