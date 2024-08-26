@@ -100,7 +100,7 @@ namespace DigaoRunnerApp
                 return;
             }
 
-            LoadVarsSettings();
+            LoadTitle();
 
             if (_fileContents.GetVar("ADMIN") == "true" && !stAdmin.Visible)
             {
@@ -132,12 +132,10 @@ namespace DigaoRunnerApp
             }
         }
 
-        private void LoadVarsSettings()
+        private void LoadTitle()
         {
             string title = _fileContents.GetVar("TITLE");
             if (!string.IsNullOrEmpty(title)) this.Text = title;
-
-            if (_fileContents.GetVar("MAXIMIZED") == "true") WindowState = FormWindowState.Maximized;
         }
 
         private ResolvedFields ReadFieldsFromPanel()
@@ -215,6 +213,13 @@ namespace DigaoRunnerApp
             });
         }
 
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            btnRun.Enabled = false;
+            ChangePage(false);
+            Run();
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             btnCancel.Enabled = false;
@@ -238,13 +243,6 @@ namespace DigaoRunnerApp
             {
                 SaveReg();
             }
-        }
-
-        private void btnRun_Click(object sender, EventArgs e)
-        {
-            btnRun.Enabled = false;
-            ChangePage(false);
-            Run();
         }
 
         private void stDigaoDalpiaz_Click(object sender, EventArgs e)
