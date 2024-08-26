@@ -53,6 +53,6 @@
 
     public enum StatusType
     {
-        WAIT=0, OK=1, ERROR=2, BELL=3
+        WAIT = 0, OK = 1, ERROR = 2, BELL = 3
     }
 }
