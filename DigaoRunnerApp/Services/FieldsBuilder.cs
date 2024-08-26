@@ -59,7 +59,7 @@ namespace DigaoRunnerApp.Services
                         throw new ValidationException($"Field '{item.Key}' contains invalid type '{type}'");
                 }
 
-                if (!(control is CheckBox))
+                if (control is not CheckBox)
                 {
                     Label lb = new();
                     lb.Parent = panel;

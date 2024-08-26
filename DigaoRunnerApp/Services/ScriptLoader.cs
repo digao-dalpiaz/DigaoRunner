@@ -2,10 +2,10 @@
 
 namespace DigaoRunnerApp.Services
 {
-    internal class ScriptLoader
+    public class ScriptLoader
     {
 
-        public FileContents LoadFile()
+        public static FileContents LoadFile()
         {
             var args = Environment.GetCommandLineArgs();
             if (args.Length < 2) throw new ValidationException("Script file not informed");
@@ -35,9 +35,9 @@ namespace DigaoRunnerApp.Services
             };
         }
 
-        private FileContents.Variables ReadVariables(List<string> head)
+        private static FileContents.Variables ReadVariables(List<string> head)
         {
-            FileContents.Variables variables = [];
+            FileContents.Variables variables = new();
             foreach (var line in head.Select(x => x.Trim()))
             {
                 if (line.StartsWith("//")) continue;
@@ -57,7 +57,7 @@ namespace DigaoRunnerApp.Services
             return variables;
         }
 
-        private void ProcessVariables(FileContents.Variables variables)
+        private static void ProcessVariables(FileContents.Variables variables)
         {
             if (!variables.TryGetValue("VERSION", out var version)) throw new ValidationException("Version variable not found");
             if (version != "1") throw new ValidationException("Unsupported script version");

@@ -1,6 +1,6 @@
 ﻿namespace DigaoRunnerApp.Exceptions
 {
-    internal class CancelException(string message) : Exception(message)
+    public class CancelException(string message) : Exception(message)
     {
     }
 }

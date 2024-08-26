@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace DigaoRunnerApp.Services
 {
-    internal class Engine(FileContents _fileContents, ResolvedFields _resolvedFields, CancellationTokenSource _cancellationTokenSource)
+    public class Engine(FileContents _fileContents, ResolvedFields _resolvedFields, CancellationTokenSource _cancellationTokenSource)
     {
 
         public void RunScript()

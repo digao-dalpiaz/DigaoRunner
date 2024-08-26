@@ -1,6 +1,6 @@
 ﻿namespace DigaoRunnerApp.Exceptions
 {
-    internal class CodeException(string message) : Exception(message)
+    public class CodeException(string message) : Exception(message)
     {
     }
 }

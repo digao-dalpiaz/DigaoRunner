@@ -75,7 +75,7 @@ namespace DigaoRunnerApp
 
             try
             {
-                _fileContents = new ScriptLoader().LoadFile();
+                _fileContents = ScriptLoader.LoadFile();
             }
             catch (ValidationException ex)
             {
