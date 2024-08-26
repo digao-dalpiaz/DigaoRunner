@@ -14,7 +14,6 @@ namespace DigaoRunnerApp
 
         private bool _running;
         private FileContents _fileContents;
-        private Fields _fields;
 
         private readonly CancellationTokenSource _cancellationTokenSource = new();
 
@@ -79,13 +78,13 @@ namespace DigaoRunnerApp
             }
             catch (ValidationException ex)
             {
-                LogService.Log("ERROR LOADING SCRIPT: " + ex.Message, Color.Crimson);
+                LogService.LogError("ERROR LOADING SCRIPT: " + ex.Message);
                 LogService.SetStatus("Script validation error", StatusType.ERROR);
                 return;
             }
 
-            _fields = new FieldsBuilder(_fileContents).Build();
-            if (_fields.Count > 0) 
+            new FieldsBuilder(_fileContents).BuildScreen();
+            if (_fileContents.Fields.Count > 0) 
             {
                 LogService.SetStatus("Please fill initial parameters", StatusType.BELL);
                 ChangePage(true);
@@ -98,6 +97,19 @@ namespace DigaoRunnerApp
             }
         }
 
+        private ResolvedFields ReadFieldsFromPanel()
+        {
+            ResolvedFields dic = [];
+
+            foreach (var field in _fileContents.Fields)
+            {
+                var prop = field.Control.GetType().GetProperty(field.ValueProp);
+                dic.Add(field.Name, prop.GetValue(field.Control));
+            }
+
+            return dic;
+        }
+
         private void Run()
         {
             _running = true;
@@ -107,7 +119,7 @@ namespace DigaoRunnerApp
             UpdateClock();
             timerControl.Enabled = true;
 
-            var resolvedFields = _fields.ReadFieldsFromPanel();
+            var resolvedFields = ReadFieldsFromPanel();
 
             Task.Run(() =>
             {
@@ -144,7 +156,7 @@ namespace DigaoRunnerApp
                 }
 
                 LogService.SetStatus(status, completed ? StatusType.OK : StatusType.ERROR);
-                if (logError != null) LogService.Log(logError, Color.Crimson);
+                if (logError != null) LogService.LogError(logError);
 
                 Invoke(() =>
                 {

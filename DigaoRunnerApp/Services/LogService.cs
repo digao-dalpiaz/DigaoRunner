@@ -16,6 +16,11 @@
             });
         }
 
+        public static void LogError(string text)
+        {
+            Log(text, Color.Crimson);
+        }
+
         public static void Log(string text, Color color)
         {
             Form.Invoke(() =>

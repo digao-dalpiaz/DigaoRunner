@@ -5,9 +5,9 @@ namespace DigaoRunnerApp.Services
     public class FieldsBuilder(FileContents _fileContents)
     {
 
-        public Fields Build()
+        public void BuildScreen()
         {
-            Fields fields = new();
+            _fileContents.Fields = [];
 
             var panel = LogService.Form.boxFields;
 
@@ -76,40 +76,14 @@ namespace DigaoRunnerApp.Services
                 control.Top = y;
                 y = control.Bottom + 20;
 
-                fields.Add(new Field
+                _fileContents.Fields.Add(new FileContents.Field
                 {
                     Name = name,
                     Control = control,
                     ValueProp = valueProp
                 });
             }
-
-            return fields;
         }
 
     }
-
-    public class Field
-    {
-        public Control Control;
-        public string Name;
-        public string ValueProp;
-    }
-    public class Fields : List<Field>
-    {
-        public ResolvedFields ReadFieldsFromPanel()
-        {
-            ResolvedFields dic = [];
-
-            foreach (var field in this)
-            {
-                var prop = field.Control.GetType().GetProperty(field.ValueProp);
-                dic.Add(field.Name, prop.GetValue(field.Control));
-            }
-
-            return dic;
-        }
-    }
-
-    public class ResolvedFields : Dictionary<string, object>;
 }
