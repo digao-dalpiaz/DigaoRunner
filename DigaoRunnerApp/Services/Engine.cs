@@ -29,6 +29,8 @@ namespace DigaoRunnerApp.Services
             LogService.SetStatus("Compiling...", StatusType.WAIT);
             script.Compile();
 
+            functions.CheckStop();
+
             LogService.SetStatus("Running...", StatusType.WAIT);
             try
             {
