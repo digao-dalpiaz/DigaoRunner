@@ -8,6 +8,12 @@
 
         public class Variables : Dictionary<string, string>;
 
+        public string GetVar(string name)
+        {
+            if (Vars.TryGetValue(name, out var value)) return value;
+            return null;
+        }
+
         public List<Field> Fields { get; set; }
         public class Field
         {

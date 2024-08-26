@@ -1,6 +1,5 @@
 using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
-using DigaoRunnerApp.ScriptContext;
 using DigaoRunnerApp.Services;
 using Microsoft.Win32;
 using System.Diagnostics;
@@ -25,7 +24,7 @@ namespace DigaoRunnerApp
             InitializeComponent();
 
             stVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            this.Icon = Icon.ExtractAssociatedIcon(Process.GetCurrentProcess().MainModule.FileName);
+            this.Icon = Icon.ExtractAssociatedIcon(Environment.ProcessPath);
 
             ChangePage(false);
 
@@ -51,18 +50,32 @@ namespace DigaoRunnerApp
 
         private void LoadReg()
         {
-            var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
+            using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
+
             edLog.Font = new Font(
                 (string)key.GetValue("FontName", edLog.Font.Name),
                 float.Parse((string)key.GetValue("FontSize", edLog.Font.Size)));
+
+            LogService.Colors = new()
+            {
+                Normal = Color.FromArgb((int)key.GetValue("ColorNormal", Color.LimeGreen.ToArgb())),
+                Error = Color.FromArgb((int)key.GetValue("ColorError", Color.Crimson.ToArgb())),
+            };
+
+            edLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", edLog.BackColor.ToArgb()));
         }
 
         private void SaveReg()
         {
-            var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
+            using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
 
             key.SetValue("FontName", edLog.Font.Name);
             key.SetValue("FontSize", edLog.Font.Size);
+
+            key.SetValue("ColorNormal", LogService.Colors.Normal.ToArgb());
+            key.SetValue("ColorError", LogService.Colors.Error.ToArgb());
+
+            key.SetValue("ColorBack", edLog.BackColor.ToArgb());
         }
 
         private void ChangePage(bool fieldsPage)
@@ -83,6 +96,25 @@ namespace DigaoRunnerApp
             {
                 LogService.LogError("ERROR LOADING SCRIPT: " + ex.Message);
                 LogService.SetStatus("Script validation error", StatusType.ERROR);
+                return;
+            }
+
+            string title = _fileContents.GetVar("TITLE");
+            if (!string.IsNullOrEmpty(title)) this.Text = title;
+
+            if (_fileContents.GetVar("ADMIN") == "true" && !AdminRights.IsRunningAsAdministrator())
+            {
+                try
+                {
+                    AdminRights.RestartAsAdministrator();
+                }
+                catch (Exception ex)
+                {
+                    LogService.LogError("Error trying to execute as Admin: " + ex.Message);
+                    LogService.SetStatus("Can't execute as Admin", StatusType.ERROR);
+                    return;
+                }
+                Application.Exit();
                 return;
             }
 
@@ -139,7 +171,7 @@ namespace DigaoRunnerApp
                     status = "Successfully completed!";
                     completed = true;
                 }
-                catch (AbortException ex)
+                catch (ScriptFunctions.AbortException ex)
                 {
                     logError = ex.Message;
                     status = "Script aborted";
@@ -194,12 +226,9 @@ namespace DigaoRunnerApp
 
         private void btnFont_Click(object sender, EventArgs e)
         {
-            var f = new FontDialog();
-            f.Font = edLog.Font;
-            if (f.ShowDialog() == DialogResult.OK)
+            var settings = new FrmConfig();
+            if (settings.ShowDialog() == DialogResult.OK)
             {
-                edLog.Font = f.Font;
-
                 SaveReg();
             }
         }

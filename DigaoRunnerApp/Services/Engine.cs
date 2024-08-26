@@ -1,9 +1,7 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
-using DigaoRunnerApp.ScriptContext;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
-using System.IO.Compression;
 using System.Text.RegularExpressions;
 
 namespace DigaoRunnerApp.Services
@@ -14,20 +12,24 @@ namespace DigaoRunnerApp.Services
         public void RunScript()
         {
             var scriptOptions = ScriptOptions.Default
-                .AddImports("System.IO")
-                .AddImports("System.IO.Compression")
-                .AddImports("System.Drawing")
-                .AddImports("DigaoRunnerApp.ScriptContext")
-                .AddReferences(typeof(AbortException).Assembly)
-                .AddReferences(typeof(ZipFile).Assembly)
-                .WithEmitDebugInformation(true);
+                .WithReferences([
+                    "System.Drawing",
+                    "System.IO.Compression.ZipFile" //ZipFile needs this to work
+                ])
+                .WithImports([
+                    "System.IO", //ref not required
+                    "System.IO.Compression",
+                    "System.Drawing",
+                ])
+                .WithEmitDebugInformation(true)
+                .WithOptimizationLevel(Microsoft.CodeAnalysis.OptimizationLevel.Release);
 
             ScriptFunctions functions = new(_cancellationTokenSource.Token, _resolvedFields);
 
             var script = CSharpScript.Create(code: _fileContents.Code, options: scriptOptions, globalsType: typeof(ScriptFunctions));
 
             LogService.SetStatus("Compiling...", StatusType.WAIT);
-            script.Compile();
+            script.Compile(/*_cancellationTokenSource.Token*/);
 
             functions.CheckStop();
 
@@ -39,7 +41,7 @@ namespace DigaoRunnerApp.Services
                 if (state.Exception != null)
                 {
                     var inner = state.Exception.InnerException;
-                    if (inner is AbortException || inner is CancelException) throw inner;
+                    if (inner is ScriptFunctions.AbortException || inner is CancelException) throw inner;
 
                     throw new CodeException(inner.Message + Environment.NewLine + AdjustStackTrace(inner.StackTrace));
                 }

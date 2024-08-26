@@ -1,11 +1,17 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
+using Microsoft.Win32;
 using System.Diagnostics;
+using System.Text;
 
 namespace DigaoRunnerApp.Services
 {
     public class ScriptFunctions(CancellationToken _stopToken, ResolvedFields _resolvedFields)
     {
+
+        public class AbortException(string message) : Exception(message)
+        {
+        }
 
         public object GetField(string name)
         {
@@ -19,9 +25,7 @@ namespace DigaoRunnerApp.Services
 
         public void Echo(string text, Color? color = null)
         {
-            if (color == null) color = Color.LimeGreen;
-
-            LogService.Log(text, color.Value);
+            LogService.Log(text, color ?? Color.Empty, color == null ? "N" : null);
             CheckStop();
         }
 
@@ -73,6 +77,12 @@ namespace DigaoRunnerApp.Services
 
         public int RunProcess(string fileName, string arguments)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            using var reg = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Nls\CodePage");
+            var codePage = int.Parse((string)reg.GetValue("OEMCP"));
+            var systemEncoding = Encoding.GetEncoding(codePage);
+
             var processInfo = new ProcessStartInfo
             {
                 FileName = fileName,
@@ -80,7 +90,10 @@ namespace DigaoRunnerApp.Services
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
-                CreateNoWindow = true
+                CreateNoWindow = true,
+
+                StandardOutputEncoding = systemEncoding,
+                StandardErrorEncoding = systemEncoding
             };
 
             using Process p = new();

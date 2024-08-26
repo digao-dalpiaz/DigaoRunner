@@ -5,6 +5,13 @@
 
         public static FrmMain Form { get; set; }
 
+        public static DefColors Colors { get; set; }
+
+        public class DefColors
+        {
+            public Color Normal;
+            public Color Error;
+        }
 
         public static void SetStatus(string status, StatusType type)
         {
@@ -18,18 +25,30 @@
 
         public static void LogError(string text)
         {
-            Log(text, Color.Crimson);
+            Log(text, Color.Empty, "E");
         }
 
-        public static void Log(string text, Color color)
+        public static void Log(string text, Color color, string type = null)
         {
             Form.Invoke(() =>
             {
                 var ed = Form.edLog;
 
+                switch (type)
+                {
+                    case "N":
+                        color = Colors.Normal;
+                        break;
+                    case "E":
+                        color = Colors.Error;
+                        break;
+                }
+
                 ed.SelectionStart = ed.TextLength;
                 ed.SelectionColor = color;
                 ed.SelectedText = text + Environment.NewLine;
+
+                ed.ScrollToCaret();
             });
         }
 
@@ -55,4 +74,5 @@
     {
         WAIT = 0, OK = 1, ERROR = 2, BELL = 3
     }
+
 }

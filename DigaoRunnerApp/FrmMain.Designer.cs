@@ -138,8 +138,8 @@
             btnFont.Image = (Image)resources.GetObject("btnFont.Image");
             btnFont.ImageTransparentColor = Color.Magenta;
             btnFont.Name = "btnFont";
-            btnFont.Size = new Size(119, 24);
-            btnFont.Text = "Font Settings";
+            btnFont.Size = new Size(86, 24);
+            btnFont.Text = "Settings";
             btnFont.Click += btnFont_Click;
             // 
             // timerControl

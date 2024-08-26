@@ -26,7 +26,6 @@ namespace DigaoRunnerApp.Services
             var code = string.Join(Environment.NewLine, lines[(codeIndex + 1)..]);
 
             var variables = ReadVariables(head);
-            ProcessVariables(variables);
 
             return new FileContents()
             {
@@ -55,18 +54,11 @@ namespace DigaoRunnerApp.Services
                 }
             }
 
-            return variables;
-        }
-
-        private static void ProcessVariables(FileContents.Variables variables)
-        {
+            //validate version
             if (!variables.TryGetValue("VERSION", out var version)) throw new ValidationException("Version variable not found");
             if (version != "1") throw new ValidationException("Unsupported script version");
 
-            if (variables.TryGetValue("TITLE", out var title))
-            {
-                LogService.Form.Text = title;
-            }
+            return variables;
         }
 
     }
