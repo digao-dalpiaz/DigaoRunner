@@ -1,7 +1,6 @@
 ﻿using DigaoRunnerApp.Exceptions;
-using DigaoRunnerApp.Services;
 
-namespace DigaoRunnerApp
+namespace DigaoRunnerApp.Services
 {
     internal class ScriptLoader
     {
