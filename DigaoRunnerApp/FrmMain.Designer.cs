@@ -52,7 +52,7 @@
             edLog.BackColor = Color.FromArgb(30, 30, 30);
             edLog.BorderStyle = BorderStyle.None;
             edLog.Dock = DockStyle.Fill;
-            edLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            edLog.Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             edLog.ForeColor = Color.WhiteSmoke;
             edLog.Location = new Point(0, 27);
             edLog.Name = "edLog";
