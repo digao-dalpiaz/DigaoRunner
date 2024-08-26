@@ -1,5 +1,6 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
+using System.Diagnostics;
 
 namespace DigaoRunnerApp.Services
 {
@@ -21,11 +22,13 @@ namespace DigaoRunnerApp.Services
             if (color == null) color = Color.LimeGreen;
 
             LogService.Log(text, color.Value);
+            CheckStop();
         }
 
         public void Sleep(int ms)
         {
             Task.Delay(ms).Wait();
+            CheckStop();
         }
 
         public void CheckStop()
@@ -66,6 +69,36 @@ namespace DigaoRunnerApp.Services
             {
                 LogService.SwitchProgress(false);
             }
+        }
+
+        public int RunProcess(string fileName, string arguments)
+        {
+            var processInfo = new ProcessStartInfo
+            {
+                FileName = fileName,
+                Arguments = arguments,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            using Process p = new();
+            p.StartInfo = processInfo;
+
+            p.OutputDataReceived += (sender, e) => { LogService.Log(e.Data, Color.White); if (_stopToken.IsCancellationRequested) p.Kill(); };
+            p.ErrorDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Brown); if (_stopToken.IsCancellationRequested) p.Kill(); };
+
+            p.Start();
+
+            p.BeginOutputReadLine();
+            p.BeginErrorReadLine();
+
+            p.WaitForExit();
+
+            CheckStop();
+
+            return p.ExitCode;
         }
 
     }
