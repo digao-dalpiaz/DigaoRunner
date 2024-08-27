@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace DigaoRunnerApp.Services
 {
@@ -7,12 +8,12 @@ namespace DigaoRunnerApp.Services
 
         public static void LoadWindowStateFromRegistry(Form f, string key)
         {
-            var r = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(key + @"\Wnd");
+            var r = Registry.CurrentUser.CreateSubKey(key + @"\Wnd");
 
             if ((int)r.GetValue("Stored", 0) != 1) return;
 
             var wpTemp = GetPlacement();
-            wpTemp.rcNormalPosition = new System.Drawing.Rectangle(
+            wpTemp.rcNormalPosition = new Rectangle(
                 (int)r.GetValue("X"),
                 (int)r.GetValue("Y"),
                 (int)r.GetValue("W"),
@@ -28,7 +29,7 @@ namespace DigaoRunnerApp.Services
 
         public static void SaveWindowStateToRegistry(Form f, string key)
         {
-            var r = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(key + @"\Wnd");
+            var r = Registry.CurrentUser.CreateSubKey(key + @"\Wnd");
 
             var wpTemp = GetPlacement();
             GetWindowPlacement(f.Handle, ref wpTemp);
