@@ -29,185 +29,171 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
-            edLog = new RichTextBox();
-            statusBar = new StatusStrip();
-            stDigaoDalpiaz = new ToolStripStatusLabel();
-            stVersion = new ToolStripStatusLabel();
-            stAdmin = new ToolStripStatusLabel();
-            stElapsed = new ToolStripStatusLabel();
-            stStatus = new ToolStripStatusLabel();
-            progressBar = new ToolStripProgressBar();
-            buttonBar = new ToolStrip();
-            btnRun = new ToolStripButton();
-            btnCancel = new ToolStripButton();
-            btnConfig = new ToolStripButton();
-            timerControl = new System.Windows.Forms.Timer(components);
-            images = new ImageList(components);
-            boxFields = new Panel();
-            statusBar.SuspendLayout();
-            buttonBar.SuspendLayout();
+            EdLog = new RichTextBox();
+            StatusBar = new StatusStrip();
+            StDigaoDalpiaz = new ToolStripStatusLabel();
+            StVersion = new ToolStripStatusLabel();
+            StAdmin = new ToolStripStatusLabel();
+            StElapsed = new ToolStripStatusLabel();
+            StStatus = new ToolStripStatusLabel();
+            ProgressBar = new ToolStripProgressBar();
+            ButtonBar = new ToolStrip();
+            BtnRun = new ToolStripButton();
+            BtnCancel = new ToolStripButton();
+            BtnConfig = new ToolStripButton();
+            TimerControl = new System.Windows.Forms.Timer(components);
+            BoxFields = new Panel();
+            StatusBar.SuspendLayout();
+            ButtonBar.SuspendLayout();
             SuspendLayout();
             // 
-            // edLog
+            // EdLog
             // 
-            edLog.BorderStyle = BorderStyle.None;
-            edLog.Dock = DockStyle.Fill;
-            edLog.Location = new Point(0, 27);
-            edLog.Name = "edLog";
-            edLog.ReadOnly = true;
-            edLog.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
-            edLog.Size = new Size(987, 475);
-            edLog.TabIndex = 0;
-            edLog.Text = "";
+            EdLog.BorderStyle = BorderStyle.None;
+            EdLog.Dock = DockStyle.Fill;
+            EdLog.Location = new Point(0, 27);
+            EdLog.Name = "EdLog";
+            EdLog.ReadOnly = true;
+            EdLog.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
+            EdLog.Size = new Size(987, 475);
+            EdLog.TabIndex = 0;
+            EdLog.Text = "";
             // 
-            // statusBar
+            // StatusBar
             // 
-            statusBar.ImageScalingSize = new Size(20, 20);
-            statusBar.Items.AddRange(new ToolStripItem[] { stDigaoDalpiaz, stVersion, stAdmin, stElapsed, stStatus, progressBar });
-            statusBar.Location = new Point(0, 502);
-            statusBar.Name = "statusBar";
-            statusBar.Size = new Size(987, 26);
-            statusBar.TabIndex = 1;
+            StatusBar.ImageScalingSize = new Size(20, 20);
+            StatusBar.Items.AddRange(new ToolStripItem[] { StDigaoDalpiaz, StVersion, StAdmin, StElapsed, StStatus, ProgressBar });
+            StatusBar.Location = new Point(0, 502);
+            StatusBar.Name = "StatusBar";
+            StatusBar.Size = new Size(987, 26);
+            StatusBar.TabIndex = 1;
             // 
-            // stDigaoDalpiaz
+            // StDigaoDalpiaz
             // 
-            stDigaoDalpiaz.IsLink = true;
-            stDigaoDalpiaz.Name = "stDigaoDalpiaz";
-            stDigaoDalpiaz.Size = new Size(105, 20);
-            stDigaoDalpiaz.Text = "Digao Dalpiaz";
-            stDigaoDalpiaz.Click += stDigaoDalpiaz_Click;
+            StDigaoDalpiaz.IsLink = true;
+            StDigaoDalpiaz.Name = "StDigaoDalpiaz";
+            StDigaoDalpiaz.Size = new Size(105, 20);
+            StDigaoDalpiaz.Text = "Digao Dalpiaz";
+            StDigaoDalpiaz.Click += StDigaoDalpiaz_Click;
             // 
-            // stVersion
+            // StVersion
             // 
-            stVersion.ForeColor = Color.DimGray;
-            stVersion.Name = "stVersion";
-            stVersion.Size = new Size(57, 20);
-            stVersion.Text = "Version";
+            StVersion.ForeColor = Color.DimGray;
+            StVersion.Name = "StVersion";
+            StVersion.Size = new Size(57, 20);
+            StVersion.Text = "Version";
             // 
-            // stAdmin
+            // StAdmin
             // 
-            stAdmin.ForeColor = Color.FromArgb(192, 0, 192);
-            stAdmin.Image = (Image)resources.GetObject("stAdmin.Image");
-            stAdmin.Name = "stAdmin";
-            stAdmin.Size = new Size(73, 20);
-            stAdmin.Text = "Admin";
+            StAdmin.ForeColor = Color.FromArgb(192, 0, 192);
+            StAdmin.Image = Properties.Resources.admin;
+            StAdmin.Name = "StAdmin";
+            StAdmin.Size = new Size(73, 20);
+            StAdmin.Text = "Admin";
             // 
-            // stElapsed
+            // StElapsed
             // 
-            stElapsed.Image = (Image)resources.GetObject("stElapsed.Image");
-            stElapsed.Name = "stElapsed";
-            stElapsed.Size = new Size(81, 20);
-            stElapsed.Text = "Elapsed";
+            StElapsed.Image = Properties.Resources.clock;
+            StElapsed.Name = "StElapsed";
+            StElapsed.Size = new Size(81, 20);
+            StElapsed.Text = "Elapsed";
             // 
-            // stStatus
+            // StStatus
             // 
-            stStatus.Name = "stStatus";
-            stStatus.Size = new Size(49, 20);
-            stStatus.Text = "Status";
+            StStatus.Name = "StStatus";
+            StStatus.Size = new Size(49, 20);
+            StStatus.Text = "Status";
             // 
-            // progressBar
+            // ProgressBar
             // 
-            progressBar.Name = "progressBar";
-            progressBar.Size = new Size(200, 18);
+            ProgressBar.Name = "ProgressBar";
+            ProgressBar.Size = new Size(200, 18);
             // 
-            // buttonBar
+            // ButtonBar
             // 
-            buttonBar.ImageScalingSize = new Size(20, 20);
-            buttonBar.Items.AddRange(new ToolStripItem[] { btnRun, btnCancel, btnConfig });
-            buttonBar.Location = new Point(0, 0);
-            buttonBar.Name = "buttonBar";
-            buttonBar.Size = new Size(987, 27);
-            buttonBar.TabIndex = 2;
-            buttonBar.Text = "toolStrip1";
+            ButtonBar.ImageScalingSize = new Size(20, 20);
+            ButtonBar.Items.AddRange(new ToolStripItem[] { BtnRun, BtnCancel, BtnConfig });
+            ButtonBar.Location = new Point(0, 0);
+            ButtonBar.Name = "ButtonBar";
+            ButtonBar.Size = new Size(987, 27);
+            ButtonBar.TabIndex = 2;
             // 
-            // btnRun
+            // BtnRun
             // 
-            btnRun.Image = (Image)resources.GetObject("btnRun.Image");
-            btnRun.ImageTransparentColor = Color.Magenta;
-            btnRun.Name = "btnRun";
-            btnRun.Size = new Size(100, 24);
-            btnRun.Text = "Run Script";
-            btnRun.Click += btnRun_Click;
+            BtnRun.Image = Properties.Resources.play;
+            BtnRun.ImageTransparentColor = Color.Magenta;
+            BtnRun.Name = "BtnRun";
+            BtnRun.Size = new Size(100, 24);
+            BtnRun.Text = "Run Script";
+            BtnRun.Click += BtnRun_Click;
             // 
-            // btnCancel
+            // BtnCancel
             // 
-            btnCancel.Image = (Image)resources.GetObject("btnCancel.Image");
-            btnCancel.ImageTransparentColor = Color.Magenta;
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(77, 24);
-            btnCancel.Text = "Cancel";
-            btnCancel.Click += btnCancel_Click;
+            BtnCancel.Image = Properties.Resources.cancel;
+            BtnCancel.ImageTransparentColor = Color.Magenta;
+            BtnCancel.Name = "BtnCancel";
+            BtnCancel.Size = new Size(77, 24);
+            BtnCancel.Text = "Cancel";
+            BtnCancel.Click += BtnCancel_Click;
             // 
-            // btnConfig
+            // BtnConfig
             // 
-            btnConfig.Image = (Image)resources.GetObject("btnConfig.Image");
-            btnConfig.ImageTransparentColor = Color.Magenta;
-            btnConfig.Name = "btnConfig";
-            btnConfig.Size = new Size(86, 24);
-            btnConfig.Text = "Settings";
-            btnConfig.Click += btnConfig_Click;
+            BtnConfig.Image = Properties.Resources.font;
+            BtnConfig.ImageTransparentColor = Color.Magenta;
+            BtnConfig.Name = "BtnConfig";
+            BtnConfig.Size = new Size(86, 24);
+            BtnConfig.Text = "Settings";
+            BtnConfig.Click += BtnConfig_Click;
             // 
-            // timerControl
+            // TimerControl
             // 
-            timerControl.Interval = 500;
-            timerControl.Tick += timerControl_Tick;
+            TimerControl.Interval = 500;
+            TimerControl.Tick += TimerControl_Tick;
             // 
-            // images
+            // BoxFields
             // 
-            images.ColorDepth = ColorDepth.Depth32Bit;
-            images.ImageStream = (ImageListStreamer)resources.GetObject("images.ImageStream");
-            images.TransparentColor = Color.Transparent;
-            images.Images.SetKeyName(0, "wait");
-            images.Images.SetKeyName(1, "ok");
-            images.Images.SetKeyName(2, "error");
-            images.Images.SetKeyName(3, "bell");
-            // 
-            // boxFields
-            // 
-            boxFields.BackColor = SystemColors.Info;
-            boxFields.Dock = DockStyle.Fill;
-            boxFields.Location = new Point(0, 27);
-            boxFields.Name = "boxFields";
-            boxFields.Size = new Size(987, 475);
-            boxFields.TabIndex = 3;
+            BoxFields.BackColor = SystemColors.Info;
+            BoxFields.Dock = DockStyle.Fill;
+            BoxFields.Location = new Point(0, 27);
+            BoxFields.Name = "BoxFields";
+            BoxFields.Size = new Size(987, 475);
+            BoxFields.TabIndex = 3;
             // 
             // FrmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(987, 528);
-            Controls.Add(edLog);
-            Controls.Add(boxFields);
-            Controls.Add(buttonBar);
-            Controls.Add(statusBar);
+            Controls.Add(EdLog);
+            Controls.Add(BoxFields);
+            Controls.Add(ButtonBar);
+            Controls.Add(StatusBar);
             Name = "FrmMain";
             Text = "Digao Runner";
             FormClosing += FrmMain_FormClosing;
             Load += FrmMain_Load;
-            statusBar.ResumeLayout(false);
-            statusBar.PerformLayout();
-            buttonBar.ResumeLayout(false);
-            buttonBar.PerformLayout();
+            StatusBar.ResumeLayout(false);
+            StatusBar.PerformLayout();
+            ButtonBar.ResumeLayout(false);
+            ButtonBar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private StatusStrip statusBar;
-        public RichTextBox edLog;
-        private ToolStrip buttonBar;
-        private ToolStripButton btnCancel;
-        private System.Windows.Forms.Timer timerControl;
-        private ToolStripStatusLabel stElapsed;
-        public ToolStripProgressBar progressBar;
-        private ToolStripStatusLabel stVersion;
-        private ToolStripButton btnConfig;
-        public ToolStripStatusLabel stStatus;
-        private ToolStripButton btnRun;
-        public Panel boxFields;
-        public ImageList images;
-        private ToolStripStatusLabel stDigaoDalpiaz;
-        private ToolStripStatusLabel stAdmin;
+        private StatusStrip StatusBar;
+        public RichTextBox EdLog;
+        private ToolStrip ButtonBar;
+        private ToolStripButton BtnCancel;
+        private System.Windows.Forms.Timer TimerControl;
+        private ToolStripStatusLabel StElapsed;
+        public ToolStripProgressBar ProgressBar;
+        private ToolStripStatusLabel StVersion;
+        private ToolStripButton BtnConfig;
+        public ToolStripStatusLabel StStatus;
+        private ToolStripButton BtnRun;
+        public Panel BoxFields;
+        private ToolStripStatusLabel StDigaoDalpiaz;
+        private ToolStripStatusLabel StAdmin;
     }
 }

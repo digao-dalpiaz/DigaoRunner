@@ -1,4 +1,6 @@
-﻿namespace DigaoRunnerApp.Services
+﻿using DigaoRunnerApp.Properties;
+
+namespace DigaoRunnerApp.Services
 {
     public class LogService
     {
@@ -23,9 +25,25 @@
         {
             Form.Invoke(() =>
             {
-                Form.stStatus.Text = status;
-                Form.stStatus.ForeColor = type == StatusType.OK ? Color.Green : type == StatusType.ERROR ? Color.Red : SystemColors.ControlText;
-                Form.stStatus.Image = Form.images.Images[(int)type];
+                Form.StStatus.Text = status;
+
+                Form.StStatus.ForeColor = type switch
+                {
+                    StatusType.OK => Color.Green,
+                    StatusType.ERROR => Color.Red,
+                    StatusType.WAIT => Color.SteelBlue,
+                    StatusType.BELL => Color.Black,
+                    _ => throw new Exception("Invalid status type")
+                };
+
+                Form.StStatus.Image = type switch
+                {
+                    StatusType.OK => Resources.ok,
+                    StatusType.ERROR => Resources.error,
+                    StatusType.WAIT => Resources.wait,
+                    StatusType.BELL => Resources.bell,
+                    _ => throw new Exception("Invalid status type")
+                };
             });
         }
 
@@ -38,7 +56,7 @@
         {
             Form.Invoke(() =>
             {
-                var ed = Form.edLog;
+                var ed = Form.EdLog;
 
                 switch (type)
                 {
@@ -62,7 +80,7 @@
         {
             Form.Invoke(() =>
             {
-                Form.progressBar.Visible = enable;
+                Form.ProgressBar.Visible = enable;
             });
         }
 
@@ -70,7 +88,7 @@
         {
             Form.Invoke(() =>
             {
-                Form.progressBar.Value = (int)Math.Floor((double)position * 100 / total);
+                Form.ProgressBar.Value = (int)Math.Floor((double)position * 100 / total);
             });
         }
 

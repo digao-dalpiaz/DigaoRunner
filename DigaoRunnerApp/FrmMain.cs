@@ -23,18 +23,18 @@ namespace DigaoRunnerApp
         {
             InitializeComponent();
 
-            stVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            StVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Icon = Icon.ExtractAssociatedIcon(Environment.ProcessPath);
 
             ChangePage(false);
 
-            btnRun.Enabled = false;
-            btnCancel.Enabled = false;
+            BtnRun.Enabled = false;
+            BtnCancel.Enabled = false;
 
-            stAdmin.Visible = AdminRights.IsRunningAsAdministrator();
-            stStatus.Text = null;
+            StAdmin.Visible = AdminRights.IsRunningAsAdministrator();
+            StStatus.Text = null;
 
-            progressBar.Visible = false;
+            ProgressBar.Visible = false;
             UpdateClock();
 
             LogService.Form = this;
@@ -53,7 +53,7 @@ namespace DigaoRunnerApp
         {
             using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
 
-            edLog.Font = new Font(
+            EdLog.Font = new Font(
                 (string)key.GetValue("FontName", LogService.DEFAULT_FONT),
                 float.Parse((string)key.GetValue("FontSize", LogService.DEFAULT_SIZE.ToString())));
 
@@ -63,26 +63,26 @@ namespace DigaoRunnerApp
                 Error = Color.FromArgb((int)key.GetValue("ColorError", LogService.DEFAULT_COLOR_ERROR.ToArgb())),
             };
 
-            edLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", LogService.DEFAULT_COLOR_BACK.ToArgb()));
+            EdLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", LogService.DEFAULT_COLOR_BACK.ToArgb()));
         }
 
         private void SaveReg()
         {
             using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
 
-            key.SetValue("FontName", edLog.Font.Name);
-            key.SetValue("FontSize", edLog.Font.Size);
+            key.SetValue("FontName", EdLog.Font.Name);
+            key.SetValue("FontSize", EdLog.Font.Size);
 
             key.SetValue("ColorNormal", LogService.Colors.Normal.ToArgb());
             key.SetValue("ColorError", LogService.Colors.Error.ToArgb());
 
-            key.SetValue("ColorBack", edLog.BackColor.ToArgb());
+            key.SetValue("ColorBack", EdLog.BackColor.ToArgb());
         }
 
         private void ChangePage(bool fieldsPage)
         {
-            boxFields.Visible = fieldsPage;
-            edLog.Visible = !fieldsPage;
+            BoxFields.Visible = fieldsPage;
+            EdLog.Visible = !fieldsPage;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -102,7 +102,7 @@ namespace DigaoRunnerApp
 
             LoadTitle();
 
-            if (_fileContents.GetVar("ADMIN") == "true" && !stAdmin.Visible)
+            if (_fileContents.GetVar("ADMIN") == "true" && !StAdmin.Visible)
             {
                 try
                 {
@@ -124,7 +124,7 @@ namespace DigaoRunnerApp
                 LogService.SetStatus("Please fill initial parameters", StatusType.BELL);
                 ChangePage(true);
 
-                btnRun.Enabled = true;
+                BtnRun.Enabled = true;
             }
             else
             {
@@ -155,11 +155,11 @@ namespace DigaoRunnerApp
             _running = true;
             LogService.SetStatus("Initializing...", StatusType.WAIT);
 
-            btnCancel.Enabled = true;
+            BtnCancel.Enabled = true;
 
             _stopwatch.Start();
             UpdateClock();
-            timerControl.Enabled = true;
+            TimerControl.Enabled = true;
 
             var resolvedFields = ReadFieldsFromPanel();
 
@@ -176,7 +176,7 @@ namespace DigaoRunnerApp
                     status = "Successfully completed!";
                     completed = true;
                 }
-                catch (ScriptFunctions.AbortException ex)
+                catch (AbortException ex)
                 {
                     logError = ex.Message;
                     status = "Script aborted";
@@ -204,39 +204,39 @@ namespace DigaoRunnerApp
                 {
                     _running = false;
 
-                    btnCancel.Enabled = false;
+                    BtnCancel.Enabled = false;
 
-                    timerControl.Enabled = false;
+                    TimerControl.Enabled = false;
                     _stopwatch.Stop();
                     UpdateClock();
                 });
             });
         }
 
-        private void btnRun_Click(object sender, EventArgs e)
+        private void BtnRun_Click(object sender, EventArgs e)
         {
-            btnRun.Enabled = false;
+            BtnRun.Enabled = false;
             ChangePage(false);
             Run();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
-            btnCancel.Enabled = false;
+            BtnCancel.Enabled = false;
             _cancellationTokenSource.Cancel();
         }
 
-        private void timerControl_Tick(object sender, EventArgs e)
+        private void TimerControl_Tick(object sender, EventArgs e)
         {
             UpdateClock();
         }
 
         private void UpdateClock()
         {
-            stElapsed.Text = "Elapsed: " + _stopwatch.Elapsed.ToString("d\\.hh\\:mm\\:ss");
+            StElapsed.Text = "Elapsed: " + _stopwatch.Elapsed.ToString("d\\.hh\\:mm\\:ss");
         }
 
-        private void btnConfig_Click(object sender, EventArgs e)
+        private void BtnConfig_Click(object sender, EventArgs e)
         {
             var settings = new FrmConfig();
             if (settings.ShowDialog() == DialogResult.OK)
@@ -245,7 +245,7 @@ namespace DigaoRunnerApp
             }
         }
 
-        private void stDigaoDalpiaz_Click(object sender, EventArgs e)
+        private void StDigaoDalpiaz_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", "https://github.com/digao-dalpiaz");
         }

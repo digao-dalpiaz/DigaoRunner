@@ -28,171 +28,171 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            edFont = new ComboBox();
-            label2 = new Label();
-            edSize = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            groupBox1 = new GroupBox();
-            btnDefaults = new Button();
-            label5 = new Label();
-            boxBackColor = new Panel();
-            boxErrorColor = new Panel();
-            boxNormalColor = new Panel();
-            btnOk = new Button();
-            btnCancel = new Button();
-            groupBox1.SuspendLayout();
+            LbFont = new Label();
+            EdFont = new ComboBox();
+            LbSize = new Label();
+            EdSize = new TextBox();
+            LbErrorColor = new Label();
+            LbNormalColor = new Label();
+            BoxConsole = new GroupBox();
+            BtnDefaults = new Button();
+            LbBackColor = new Label();
+            BoxBackColor = new Panel();
+            BoxErrorColor = new Panel();
+            BoxNormalColor = new Panel();
+            BtnOK = new Button();
+            BtnCancel = new Button();
+            BoxConsole.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // LbFont
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(21, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Font";
+            LbFont.AutoSize = true;
+            LbFont.Location = new Point(21, 40);
+            LbFont.Name = "LbFont";
+            LbFont.Size = new Size(38, 20);
+            LbFont.TabIndex = 0;
+            LbFont.Text = "Font";
             // 
-            // edFont
+            // EdFont
             // 
-            edFont.FormattingEnabled = true;
-            edFont.Location = new Point(24, 64);
-            edFont.Name = "edFont";
-            edFont.Size = new Size(376, 28);
-            edFont.TabIndex = 0;
-            edFont.DropDown += edFont_DropDown;
+            EdFont.FormattingEnabled = true;
+            EdFont.Location = new Point(24, 64);
+            EdFont.Name = "EdFont";
+            EdFont.Size = new Size(376, 28);
+            EdFont.TabIndex = 0;
+            EdFont.DropDown += EdFont_DropDown;
             // 
-            // label2
+            // LbSize
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(413, 40);
-            label2.Name = "label2";
-            label2.Size = new Size(36, 20);
-            label2.TabIndex = 2;
-            label2.Text = "Size";
+            LbSize.AutoSize = true;
+            LbSize.Location = new Point(413, 40);
+            LbSize.Name = "LbSize";
+            LbSize.Size = new Size(36, 20);
+            LbSize.TabIndex = 2;
+            LbSize.Text = "Size";
             // 
-            // edSize
+            // EdSize
             // 
-            edSize.Location = new Point(416, 64);
-            edSize.Name = "edSize";
-            edSize.Size = new Size(96, 27);
-            edSize.TabIndex = 1;
+            EdSize.Location = new Point(416, 64);
+            EdSize.Name = "EdSize";
+            EdSize.Size = new Size(96, 27);
+            EdSize.TabIndex = 1;
             // 
-            // label3
+            // LbErrorColor
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(189, 112);
-            label3.Name = "label3";
-            label3.Size = new Size(79, 20);
-            label3.TabIndex = 4;
-            label3.Text = "Error color";
+            LbErrorColor.AutoSize = true;
+            LbErrorColor.Location = new Point(189, 112);
+            LbErrorColor.Name = "LbErrorColor";
+            LbErrorColor.Size = new Size(79, 20);
+            LbErrorColor.TabIndex = 4;
+            LbErrorColor.Text = "Error color";
             // 
-            // label4
+            // LbNormalColor
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(21, 112);
-            label4.Name = "label4";
-            label4.Size = new Size(97, 20);
-            label4.TabIndex = 5;
-            label4.Text = "Normal color";
+            LbNormalColor.AutoSize = true;
+            LbNormalColor.Location = new Point(21, 112);
+            LbNormalColor.Name = "LbNormalColor";
+            LbNormalColor.Size = new Size(97, 20);
+            LbNormalColor.TabIndex = 5;
+            LbNormalColor.Text = "Normal color";
             // 
-            // groupBox1
+            // BoxConsole
             // 
-            groupBox1.Controls.Add(btnDefaults);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(boxBackColor);
-            groupBox1.Controls.Add(boxErrorColor);
-            groupBox1.Controls.Add(boxNormalColor);
-            groupBox1.Controls.Add(edFont);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(edSize);
-            groupBox1.Location = new Point(16, 16);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(536, 264);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Console";
+            BoxConsole.Controls.Add(BtnDefaults);
+            BoxConsole.Controls.Add(LbBackColor);
+            BoxConsole.Controls.Add(BoxBackColor);
+            BoxConsole.Controls.Add(BoxErrorColor);
+            BoxConsole.Controls.Add(BoxNormalColor);
+            BoxConsole.Controls.Add(EdFont);
+            BoxConsole.Controls.Add(LbErrorColor);
+            BoxConsole.Controls.Add(LbNormalColor);
+            BoxConsole.Controls.Add(LbFont);
+            BoxConsole.Controls.Add(LbSize);
+            BoxConsole.Controls.Add(EdSize);
+            BoxConsole.Location = new Point(16, 16);
+            BoxConsole.Name = "BoxConsole";
+            BoxConsole.Size = new Size(536, 264);
+            BoxConsole.TabIndex = 0;
+            BoxConsole.TabStop = false;
+            BoxConsole.Text = "Console";
             // 
-            // btnDefaults
+            // BtnDefaults
             // 
-            btnDefaults.Location = new Point(24, 200);
-            btnDefaults.Name = "btnDefaults";
-            btnDefaults.Size = new Size(120, 40);
-            btnDefaults.TabIndex = 10;
-            btnDefaults.Text = "Load Defaults";
-            btnDefaults.UseVisualStyleBackColor = true;
-            btnDefaults.Click += btnDefaults_Click;
+            BtnDefaults.Location = new Point(24, 200);
+            BtnDefaults.Name = "BtnDefaults";
+            BtnDefaults.Size = new Size(120, 40);
+            BtnDefaults.TabIndex = 10;
+            BtnDefaults.Text = "Load Defaults";
+            BtnDefaults.UseVisualStyleBackColor = true;
+            BtnDefaults.Click += BtnDefaults_Click;
             // 
-            // label5
+            // LbBackColor
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(357, 112);
-            label5.Name = "label5";
-            label5.Size = new Size(126, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Background color";
+            LbBackColor.AutoSize = true;
+            LbBackColor.Location = new Point(357, 112);
+            LbBackColor.Name = "LbBackColor";
+            LbBackColor.Size = new Size(126, 20);
+            LbBackColor.TabIndex = 8;
+            LbBackColor.Text = "Background color";
             // 
-            // boxBackColor
+            // BoxBackColor
             // 
-            boxBackColor.Cursor = Cursors.Hand;
-            boxBackColor.Location = new Point(360, 136);
-            boxBackColor.Name = "boxBackColor";
-            boxBackColor.Size = new Size(152, 40);
-            boxBackColor.TabIndex = 9;
-            boxBackColor.Click += ColorClick;
+            BoxBackColor.Cursor = Cursors.Hand;
+            BoxBackColor.Location = new Point(360, 136);
+            BoxBackColor.Name = "BoxBackColor";
+            BoxBackColor.Size = new Size(152, 40);
+            BoxBackColor.TabIndex = 9;
+            BoxBackColor.Click += ColorClick;
             // 
-            // boxErrorColor
+            // BoxErrorColor
             // 
-            boxErrorColor.Cursor = Cursors.Hand;
-            boxErrorColor.Location = new Point(192, 136);
-            boxErrorColor.Name = "boxErrorColor";
-            boxErrorColor.Size = new Size(152, 40);
-            boxErrorColor.TabIndex = 7;
-            boxErrorColor.Click += ColorClick;
+            BoxErrorColor.Cursor = Cursors.Hand;
+            BoxErrorColor.Location = new Point(192, 136);
+            BoxErrorColor.Name = "BoxErrorColor";
+            BoxErrorColor.Size = new Size(152, 40);
+            BoxErrorColor.TabIndex = 7;
+            BoxErrorColor.Click += ColorClick;
             // 
-            // boxNormalColor
+            // BoxNormalColor
             // 
-            boxNormalColor.Cursor = Cursors.Hand;
-            boxNormalColor.Location = new Point(24, 136);
-            boxNormalColor.Name = "boxNormalColor";
-            boxNormalColor.Size = new Size(152, 40);
-            boxNormalColor.TabIndex = 6;
-            boxNormalColor.Click += ColorClick;
+            BoxNormalColor.Cursor = Cursors.Hand;
+            BoxNormalColor.Location = new Point(24, 136);
+            BoxNormalColor.Name = "BoxNormalColor";
+            BoxNormalColor.Size = new Size(152, 40);
+            BoxNormalColor.TabIndex = 6;
+            BoxNormalColor.Click += ColorClick;
             // 
-            // btnOk
+            // BtnOK
             // 
-            btnOk.Location = new Point(160, 288);
-            btnOk.Name = "btnOk";
-            btnOk.Size = new Size(120, 40);
-            btnOk.TabIndex = 1;
-            btnOk.Text = "OK";
-            btnOk.UseVisualStyleBackColor = true;
-            btnOk.Click += btnOk_Click;
+            BtnOK.Location = new Point(160, 288);
+            BtnOK.Name = "BtnOK";
+            BtnOK.Size = new Size(120, 40);
+            BtnOK.TabIndex = 1;
+            BtnOK.Text = "OK";
+            BtnOK.UseVisualStyleBackColor = true;
+            BtnOK.Click += BtnOk_Click;
             // 
-            // btnCancel
+            // BtnCancel
             // 
-            btnCancel.DialogResult = DialogResult.Cancel;
-            btnCancel.Location = new Point(288, 288);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(120, 40);
-            btnCancel.TabIndex = 2;
-            btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            BtnCancel.DialogResult = DialogResult.Cancel;
+            BtnCancel.Location = new Point(288, 288);
+            BtnCancel.Name = "BtnCancel";
+            BtnCancel.Size = new Size(120, 40);
+            BtnCancel.TabIndex = 2;
+            BtnCancel.Text = "Cancel";
+            BtnCancel.UseVisualStyleBackColor = true;
             // 
             // FrmConfig
             // 
-            AcceptButton = btnOk;
+            AcceptButton = BtnOK;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            CancelButton = btnCancel;
+            CancelButton = BtnCancel;
             ClientSize = new Size(568, 340);
-            Controls.Add(btnCancel);
-            Controls.Add(btnOk);
-            Controls.Add(groupBox1);
+            Controls.Add(BtnCancel);
+            Controls.Add(BtnOK);
+            Controls.Add(BoxConsole);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -201,26 +201,26 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Settings";
             Load += FrmConfig_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            BoxConsole.ResumeLayout(false);
+            BoxConsole.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
-        private ComboBox edFont;
-        private Label label2;
-        private TextBox edSize;
-        private Label label3;
-        private Label label4;
-        private GroupBox groupBox1;
-        private Panel boxErrorColor;
-        private Panel boxNormalColor;
-        private Button btnOk;
-        private Button btnCancel;
-        private Label label5;
-        private Panel boxBackColor;
-        private Button btnDefaults;
+        private Label LbFont;
+        private ComboBox EdFont;
+        private Label LbSize;
+        private TextBox EdSize;
+        private Label LbErrorColor;
+        private Label LbNormalColor;
+        private GroupBox BoxConsole;
+        private Panel BoxErrorColor;
+        private Panel BoxNormalColor;
+        private Button BtnOK;
+        private Button BtnCancel;
+        private Label LbBackColor;
+        private Panel BoxBackColor;
+        private Button BtnDefaults;
     }
 }

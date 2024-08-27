@@ -42,7 +42,7 @@ namespace DigaoRunnerApp.Services
 
         private static Variables ReadVariables(List<string> head)
         {
-            Variables variables = new();
+            Variables variables = [];
             foreach (var line in head.Select(x => x.Trim()))
             {
                 if (line.StartsWith("//")) continue;
@@ -85,9 +85,9 @@ namespace DigaoRunnerApp.Services
                     {
                         throw new ValidationException("Error reading JSON: " + ex.Message);
                     }
-                    
-                    var defControlType = FieldsBuilder.DEF_CONTROLS.Find(x => x.Type == field.Type);
-                    if (defControlType == null) throw new ValidationException($"Invalid type '{field.Type}'");
+
+                    var defControlType = FieldsBuilder.DEF_CONTROLS.Find(x => x.Type == field.Type)
+                        ?? throw new ValidationException($"Invalid type '{field.Type}'");
 
                     if (field.Default != null)
                     {

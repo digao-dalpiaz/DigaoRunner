@@ -32,7 +32,7 @@ namespace DigaoRunnerApp.Services
 
         public void BuildScreen()
         { 
-            var panel = LogService.Form.boxFields;
+            var panel = LogService.Form.BoxFields;
 
             int y = 20;
             foreach (var field in _fileContents.Fields)
@@ -43,6 +43,7 @@ namespace DigaoRunnerApp.Services
                 if (control is CheckBox check)
                 {
                     check.Text = field.Label;
+                    check.AutoSize = true;
                 }
                 else
                 {

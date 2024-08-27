@@ -6,13 +6,14 @@ using System.Text;
 
 namespace DigaoRunnerApp.Services
 {
-    public class ScriptFunctions(CancellationToken _stopToken, ResolvedFields _resolvedFields)
+    public class ScriptFunctions(ResolvedFields _resolvedFields, CancellationToken _stopToken)
     {
 
         private Encoding _consoleEncoding = Encoding.UTF8;
 
-        public class AbortException(string message) : Exception(message)
+        public static void Abort(string message)
         {
+            throw new AbortException(message);
         }
 
         public object GetField(string name)
@@ -25,7 +26,7 @@ namespace DigaoRunnerApp.Services
             return value;
         }
 
-        public void Echo(string text, Color? color = null)
+        public void Echo(string text = null, Color? color = null)
         {
             LogService.Log(text, color ?? Color.Empty, color == null ? "N" : null);
             CheckStop();

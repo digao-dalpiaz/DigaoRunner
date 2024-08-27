@@ -11,39 +11,39 @@ namespace DigaoRunnerApp
 
         private void FrmConfig_Load(object sender, EventArgs e)
         {
-            edFont.Text = LogService.Form.edLog.Font.Name;
-            edSize.Text = LogService.Form.edLog.Font.Size.ToString();
+            EdFont.Text = LogService.Form.EdLog.Font.Name;
+            EdSize.Text = LogService.Form.EdLog.Font.Size.ToString();
 
-            boxNormalColor.BackColor = LogService.Colors.Normal;
-            boxErrorColor.BackColor = LogService.Colors.Error;
+            BoxNormalColor.BackColor = LogService.Colors.Normal;
+            BoxErrorColor.BackColor = LogService.Colors.Error;
 
-            boxBackColor.BackColor = LogService.Form.edLog.BackColor;
+            BoxBackColor.BackColor = LogService.Form.EdLog.BackColor;
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private void BtnOk_Click(object sender, EventArgs e)
         {
-            edFont.Text = edFont.Text.Trim();
-            if (edFont.Text == string.Empty)
+            EdFont.Text = EdFont.Text.Trim();
+            if (EdFont.Text == string.Empty)
             {
                 MessageBox.Show("Specify the font name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             LoadFonts();
-            if (!edFont.Items.Contains(edFont.Text))
+            if (!EdFont.Items.Contains(EdFont.Text))
             {
                 MessageBox.Show("Invalid font name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            edSize.Text = edSize.Text.Trim();
-            if (edSize.Text == string.Empty)
+            EdSize.Text = EdSize.Text.Trim();
+            if (EdSize.Text == string.Empty)
             {
                 MessageBox.Show("Specify the font size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!float.TryParse(edSize.Text, out var fontSize))
+            if (!float.TryParse(EdSize.Text, out var fontSize))
             {
                 MessageBox.Show("Invalid font size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -51,27 +51,27 @@ namespace DigaoRunnerApp
 
             //
 
-            LogService.Form.edLog.Font = new Font(edFont.Text, fontSize);
+            LogService.Form.EdLog.Font = new Font(EdFont.Text, fontSize);
 
-            LogService.Colors.Normal = boxNormalColor.BackColor;
-            LogService.Colors.Error = boxErrorColor.BackColor;
+            LogService.Colors.Normal = BoxNormalColor.BackColor;
+            LogService.Colors.Error = BoxErrorColor.BackColor;
 
-            LogService.Form.edLog.BackColor = boxBackColor.BackColor;
+            LogService.Form.EdLog.BackColor = BoxBackColor.BackColor;
 
             DialogResult = DialogResult.OK;
         }
 
         private void LoadFonts()
         {
-            if (edFont.Items.Count > 0) return;
+            if (EdFont.Items.Count > 0) return;
 
             foreach (var item in FontFamily.Families)
             {
-                edFont.Items.Add(item.Name);
+                EdFont.Items.Add(item.Name);
             }
         }
 
-        private void edFont_DropDown(object sender, EventArgs e)
+        private void EdFont_DropDown(object sender, EventArgs e)
         {
             LoadFonts();
         }
@@ -88,14 +88,14 @@ namespace DigaoRunnerApp
             }
         }
 
-        private void btnDefaults_Click(object sender, EventArgs e)
+        private void BtnDefaults_Click(object sender, EventArgs e)
         {
-            edFont.Text = LogService.DEFAULT_FONT;
-            edSize.Text = LogService.DEFAULT_SIZE.ToString();
+            EdFont.Text = LogService.DEFAULT_FONT;
+            EdSize.Text = LogService.DEFAULT_SIZE.ToString();
 
-            boxNormalColor.BackColor = LogService.DEFAULT_COLOR_NORMAL;
-            boxErrorColor.BackColor = LogService.DEFAULT_COLOR_ERROR;
-            boxBackColor.BackColor = LogService.DEFAULT_COLOR_BACK;
+            BoxNormalColor.BackColor = LogService.DEFAULT_COLOR_NORMAL;
+            BoxErrorColor.BackColor = LogService.DEFAULT_COLOR_ERROR;
+            BoxBackColor.BackColor = LogService.DEFAULT_COLOR_BACK;
         }
 
     }

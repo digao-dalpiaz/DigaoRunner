@@ -29,7 +29,7 @@ namespace DigaoRunnerApp.Services
                 .WithEmitDebugInformation(true)
                 .WithOptimizationLevel(Microsoft.CodeAnalysis.OptimizationLevel.Release);
 
-            ScriptFunctions functions = new(_cancellationTokenSource.Token, _resolvedFields);
+            ScriptFunctions functions = new(_resolvedFields, _cancellationTokenSource.Token);
 
             var script = CSharpScript.Create(code: _fileContents.Code, options: scriptOptions, globalsType: typeof(ScriptFunctions));
 
@@ -46,7 +46,7 @@ namespace DigaoRunnerApp.Services
                 if (state.Exception != null)
                 {
                     var inner = state.Exception.InnerException;
-                    if (inner is ScriptFunctions.AbortException || inner is CancelException) throw inner;
+                    if (inner is AbortException || inner is CancelException) throw inner;
 
                     throw new CodeException(inner.Message + Environment.NewLine + AdjustStackTrace(inner.StackTrace));
                 }
