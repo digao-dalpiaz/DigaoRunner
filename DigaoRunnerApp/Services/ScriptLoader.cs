@@ -85,21 +85,22 @@ namespace DigaoRunnerApp.Services
                     {
                         throw new ValidationException("Error reading JSON: " + ex.Message);
                     }
-                    field.Name = variable.Key[1..];
-                    fields.Add(field);
-
+                    
                     var defControlType = FieldsBuilder.DEF_CONTROLS.Find(x => x.Type == field.Type);
                     if (defControlType == null) throw new ValidationException($"Invalid type '{field.Type}'");
 
-                    field.DefControlType = defControlType;
-
                     var propInfo = defControlType.Class.GetProperty(defControlType.ValueProp);
-                    field.PropInfo = propInfo;
+                    
                     if (field.Default != null)
                     {
-                        if (field.Default.GetType() != propInfo.PropertyType) 
-                            throw new ValidationException($"Expected default value of type '{propInfo.PropertyType}', but found '{field.Default.GetType()}' instead");
+                        if (field.Default.GetType() != propInfo.PropertyType) throw new ValidationException(
+                            $"Expected default value of type '{propInfo.PropertyType}', but found '{field.Default.GetType()}' instead");
                     }
+
+                    field.Name = variable.Key[1..];
+                    field.PropInfo = propInfo;
+                    field.DefControlType = defControlType;
+                    fields.Add(field);
                 }
                 catch (ValidationException ex) 
                 {
