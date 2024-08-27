@@ -1,5 +1,6 @@
 ﻿using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
 using System.Text.RegularExpressions;
@@ -27,7 +28,7 @@ namespace DigaoRunnerApp.Services
                     "System.Drawing",
                 ])
                 .WithEmitDebugInformation(true)
-                .WithOptimizationLevel(Microsoft.CodeAnalysis.OptimizationLevel.Release);
+                .WithOptimizationLevel(OptimizationLevel.Release);
 
             ScriptFunctions functions = new(_resolvedFields, _cancellationTokenSource.Token);
 
