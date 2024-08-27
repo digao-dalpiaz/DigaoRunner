@@ -170,6 +170,7 @@
             // 
             // BoxFields
             // 
+            BoxFields.AutoScroll = true;
             BoxFields.BackColor = SystemColors.Info;
             BoxFields.Dock = DockStyle.Fill;
             BoxFields.Location = new Point(0, 27);
