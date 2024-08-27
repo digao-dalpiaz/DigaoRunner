@@ -46,7 +46,10 @@ namespace DigaoRunnerApp
             {
                 MessageBox.Show("You can't close the app while script is running", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 e.Cancel = true;
+                return;
             }
+
+            WindowPlace.SaveWindowStateToRegistry(this, REG_KEY);
         }
 
         private void LoadReg()
@@ -87,6 +90,7 @@ namespace DigaoRunnerApp
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            WindowPlace.LoadWindowStateFromRegistry(this, REG_KEY);
             LoadReg();
 
             try
