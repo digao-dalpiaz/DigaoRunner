@@ -12,17 +12,18 @@ namespace DigaoRunnerApp.Services
             return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
 
-        public static void RestartAsAdministrator()
+        public static void RestartAsAdministrator(bool withSameParameters)
         {
             var startInfo = new ProcessStartInfo
             {
                 FileName = Environment.ProcessPath,
-                Arguments = string.Join(" ", Environment.GetCommandLineArgs().Skip(1).Select(x => $"\"{x}\"")),
+                Arguments = withSameParameters ? string.Join(" ", Environment.GetCommandLineArgs().Skip(1).Select(x => $"\"{x}\"")) : null,
                 Verb = "runas",
                 UseShellExecute = true
             };
 
             Process.Start(startInfo);
+            Application.Exit();
         }
 
     }

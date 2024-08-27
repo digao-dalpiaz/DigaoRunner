@@ -25,27 +25,27 @@ namespace DigaoRunnerApp
             EdFont.Text = EdFont.Text.Trim();
             if (EdFont.Text == string.Empty)
             {
-                MessageBox.Show("Specify the font name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Messages.Error("Specify the font name");
                 return;
             }
 
             LoadFonts();
             if (!EdFont.Items.Contains(EdFont.Text))
             {
-                MessageBox.Show("Invalid font name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Messages.Error("Invalid font name");
                 return;
             }
 
             EdSize.Text = EdSize.Text.Trim();
             if (EdSize.Text == string.Empty)
             {
-                MessageBox.Show("Specify the font size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Messages.Error("Specify the font size");
                 return;
             }
 
             if (!float.TryParse(EdSize.Text, out var fontSize))
             {
-                MessageBox.Show("Invalid font size", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Messages.Error("Invalid font size");
                 return;
             }
 

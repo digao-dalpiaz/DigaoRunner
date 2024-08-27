@@ -41,6 +41,8 @@
             BtnRun = new ToolStripButton();
             BtnCancel = new ToolStripButton();
             BtnConfig = new ToolStripButton();
+            BtnMore = new ToolStripDropDownButton();
+            BtnRegisterExtension = new ToolStripMenuItem();
             TimerControl = new System.Windows.Forms.Timer(components);
             BoxFields = new Panel();
             StatusBar.SuspendLayout();
@@ -112,7 +114,7 @@
             // ButtonBar
             // 
             ButtonBar.ImageScalingSize = new Size(20, 20);
-            ButtonBar.Items.AddRange(new ToolStripItem[] { BtnRun, BtnCancel, BtnConfig });
+            ButtonBar.Items.AddRange(new ToolStripItem[] { BtnRun, BtnCancel, BtnConfig, BtnMore });
             ButtonBar.Location = new Point(0, 0);
             ButtonBar.Name = "ButtonBar";
             ButtonBar.Size = new Size(987, 27);
@@ -144,6 +146,22 @@
             BtnConfig.Size = new Size(86, 24);
             BtnConfig.Text = "Settings";
             BtnConfig.Click += BtnConfig_Click;
+            // 
+            // BtnMore
+            // 
+            BtnMore.DropDownItems.AddRange(new ToolStripItem[] { BtnRegisterExtension });
+            BtnMore.Image = Properties.Resources.other;
+            BtnMore.ImageTransparentColor = Color.Magenta;
+            BtnMore.Name = "BtnMore";
+            BtnMore.Size = new Size(78, 24);
+            BtnMore.Text = "More";
+            // 
+            // BtnRegisterExtension
+            // 
+            BtnRegisterExtension.Name = "BtnRegisterExtension";
+            BtnRegisterExtension.Size = new Size(204, 26);
+            BtnRegisterExtension.Text = "Register .drs files";
+            BtnRegisterExtension.Click += BtnRegisterExtension_Click;
             // 
             // TimerControl
             // 
@@ -195,5 +213,7 @@
         public Panel BoxFields;
         private ToolStripStatusLabel StDigaoDalpiaz;
         private ToolStripStatusLabel StAdmin;
+        private ToolStripDropDownButton BtnMore;
+        private ToolStripMenuItem BtnRegisterExtension;
     }
 }

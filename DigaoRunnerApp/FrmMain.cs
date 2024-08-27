@@ -44,7 +44,7 @@ namespace DigaoRunnerApp
         {
             if (_running)
             {
-                MessageBox.Show("You can't close the app while script is running", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Messages.Error("You can't close the app while script is running");
                 e.Cancel = true;
                 return;
             }
@@ -110,15 +110,13 @@ namespace DigaoRunnerApp
             {
                 try
                 {
-                    AdminRights.RestartAsAdministrator();
+                    AdminRights.RestartAsAdministrator(true);
                 }
                 catch (Exception ex)
                 {
                     LogService.LogError("Error trying to execute as Admin: " + ex.Message);
                     LogService.SetStatus("Can't execute as Admin", StatusType.ERROR);
-                    return;
                 }
-                Application.Exit();
                 return;
             }
 
@@ -253,5 +251,25 @@ namespace DigaoRunnerApp
         {
             Process.Start("explorer.exe", "https://github.com/digao-dalpiaz");
         }
+
+        private void BtnRegisterExtension_Click(object sender, EventArgs e)
+        {
+            if (!StAdmin.Visible)
+            {
+                try
+                {
+                    AdminRights.RestartAsAdministrator(false);
+                }
+                catch (Exception ex)
+                {
+                    Messages.Error(ex.Message);
+                }
+                return;
+            }
+
+            AssociateExtension.Associate();
+            MessageBox.Show("Script extension registered!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }
