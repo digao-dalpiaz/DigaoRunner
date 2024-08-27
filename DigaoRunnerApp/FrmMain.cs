@@ -256,6 +256,12 @@ namespace DigaoRunnerApp
         {
             if (!StAdmin.Visible)
             {
+                if (_running)
+                {
+                    Messages.Error("This requires restart de app with Admin elevation, but there is a process running now!");
+                    return;
+                }
+
                 try
                 {
                     AdminRights.RestartAsAdministrator(false);

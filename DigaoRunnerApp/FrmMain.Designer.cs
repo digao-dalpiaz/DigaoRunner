@@ -140,7 +140,7 @@
             // 
             // BtnConfig
             // 
-            BtnConfig.Image = Properties.Resources.font;
+            BtnConfig.Image = Properties.Resources.config;
             BtnConfig.ImageTransparentColor = Color.Magenta;
             BtnConfig.Name = "BtnConfig";
             BtnConfig.Size = new Size(86, 24);
