@@ -144,7 +144,7 @@ namespace DigaoRunnerApp
 
             foreach (var field in _fileContents.Fields)
             {
-                dic.Add(field.Name, field.PropInfo.GetValue(field.Control));
+                dic.Add(field.Name, field.DefControlType.PropInfo.GetValue(field.Control));
             }
 
             return dic;

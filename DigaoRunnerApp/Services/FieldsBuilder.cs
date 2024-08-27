@@ -1,4 +1,5 @@
 ﻿using DigaoRunnerApp.Model;
+using System.Reflection;
 
 namespace DigaoRunnerApp.Services
 {
@@ -10,6 +11,16 @@ namespace DigaoRunnerApp.Services
             public string Type;
             public Type Class;
             public string ValueProp;
+
+            private PropertyInfo _propInfo;
+            public PropertyInfo PropInfo 
+            {
+                get
+                {
+                    if (_propInfo == null) _propInfo = Class.GetProperty(ValueProp);
+                    return _propInfo;
+                }
+            }
         }
 
         public readonly static List<DefControlType> DEF_CONTROLS =
@@ -58,7 +69,7 @@ namespace DigaoRunnerApp.Services
                 control.Top = y;
                 y = control.Bottom + 20;
 
-                if (field.Default != null) field.PropInfo.SetValue(control, field.Default);
+                if (field.Default != null) field.DefControlType.PropInfo.SetValue(control, field.Default);
             }
         }
 

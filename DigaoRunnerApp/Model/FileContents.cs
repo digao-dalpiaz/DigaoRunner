@@ -33,9 +33,6 @@ namespace DigaoRunnerApp.Model
             public bool Editable;
 
             [JsonIgnore]
-            public PropertyInfo PropInfo;
-
-            [JsonIgnore]
             public Control Control;
 
             [JsonIgnore]

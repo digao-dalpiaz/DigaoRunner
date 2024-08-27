@@ -89,16 +89,16 @@ namespace DigaoRunnerApp.Services
                     var defControlType = FieldsBuilder.DEF_CONTROLS.Find(x => x.Type == field.Type);
                     if (defControlType == null) throw new ValidationException($"Invalid type '{field.Type}'");
 
-                    var propInfo = defControlType.Class.GetProperty(defControlType.ValueProp);
-                    
                     if (field.Default != null)
                     {
-                        if (field.Default.GetType() != propInfo.PropertyType) throw new ValidationException(
-                            $"Expected default value of type '{propInfo.PropertyType}', but found '{field.Default.GetType()}' instead");
+                        var valueType = field.Default.GetType();
+                        var expectedType = defControlType.PropInfo.PropertyType;
+
+                        if (expectedType != valueType) throw new ValidationException(
+                            $"Expected default value of type '{expectedType.Name}', but found '{valueType.Name}' instead");
                     }
 
                     field.Name = variable.Key[1..];
-                    field.PropInfo = propInfo;
                     field.DefControlType = defControlType;
                     fields.Add(field);
                 }
