@@ -13,7 +13,7 @@ namespace DigaoRunnerApp.Services
             public string ValueProp;
 
             private PropertyInfo _propInfo;
-            public PropertyInfo PropInfo 
+            public PropertyInfo PropInfo
             {
                 get
                 {
@@ -31,7 +31,7 @@ namespace DigaoRunnerApp.Services
         ];
 
         public void BuildScreen()
-        { 
+        {
             var panel = LogService.Form.BoxFields;
 
             int y = 20;

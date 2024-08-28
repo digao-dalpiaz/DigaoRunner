@@ -102,11 +102,11 @@ namespace DigaoRunnerApp.Services
                     field.DefControlType = defControlType;
                     fields.Add(field);
                 }
-                catch (ValidationException ex) 
+                catch (ValidationException ex)
                 {
                     throw new ValidationException($"Failed to read field '{variable.Key}': {ex.Message}");
                 }
-                
+
             }
 
             return fields;
