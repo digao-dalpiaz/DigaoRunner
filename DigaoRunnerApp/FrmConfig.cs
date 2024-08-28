@@ -11,14 +11,20 @@ namespace DigaoRunnerApp
 
         private void FrmConfig_Load(object sender, EventArgs e)
         {
-            var customization = Customization.Instance;
+            LoadCustomization(Customization.Instance);
+        }
 
+        private void LoadCustomization(Customization customization)
+        {
             EdFont.Text = customization.Font;
             EdSize.Text = customization.Size.ToString();
 
             BoxNormalColor.BackColor = customization.ColorNormal;
             BoxErrorColor.BackColor = customization.ColorError;
             BoxBackColor.BackColor = customization.ColorBack;
+
+            BoxProcNormalColor.BackColor = customization.ColorProcNormal;
+            BoxProcErrorColor.BackColor = customization.ColorProcError;
 
             ckWordWrap.Checked = customization.WordWrap;
         }
@@ -63,6 +69,9 @@ namespace DigaoRunnerApp
             customization.ColorError = BoxErrorColor.BackColor;
             customization.ColorBack = BoxBackColor.BackColor;
 
+            customization.ColorProcNormal = BoxProcNormalColor.BackColor;
+            customization.ColorProcError = BoxProcErrorColor.BackColor;
+
             customization.WordWrap = ckWordWrap.Checked;
 
             //
@@ -102,16 +111,7 @@ namespace DigaoRunnerApp
 
         private void BtnDefaults_Click(object sender, EventArgs e)
         {
-            var defaults = new Customization();
-
-            EdFont.Text = defaults.Font;
-            EdSize.Text = defaults.Size.ToString();
-
-            BoxNormalColor.BackColor = defaults.ColorNormal;
-            BoxErrorColor.BackColor = defaults.ColorError;
-            BoxBackColor.BackColor = defaults.ColorBack;
-
-            ckWordWrap.Checked = defaults.WordWrap;
+            LoadCustomization(new Customization());
         }
 
     }

@@ -9,10 +9,14 @@ namespace DigaoRunnerApp.Services
 
         public string Font = "Consolas";
         public float Size = 12;
+        public bool WordWrap = true;
+        public Color ColorBack = Color.FromArgb(30, 30, 30);
+
         public Color ColorNormal = Color.LimeGreen;
         public Color ColorError = Color.Crimson;
-        public Color ColorBack = Color.FromArgb(30, 30, 30);
-        public bool WordWrap = true;
+
+        public Color ColorProcNormal = Color.White;
+        public Color ColorProcError = Color.Brown;
 
         private static string GetFile()
         {

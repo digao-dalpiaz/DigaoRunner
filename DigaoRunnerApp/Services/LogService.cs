@@ -52,6 +52,12 @@ namespace DigaoRunnerApp.Services
                     case "E":
                         color = Customization.Instance.ColorError;
                         break;
+                    case "PROC_N":
+                        color = Customization.Instance.ColorProcNormal;
+                        break;
+                    case "PROC_E":
+                        color = Customization.Instance.ColorProcError;
+                        break;
                 }
 
                 ed.SelectionStart = ed.TextLength;

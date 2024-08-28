@@ -107,8 +107,8 @@ namespace DigaoRunnerApp.Services
             using Process p = new();
             p.StartInfo = processInfo;
 
-            p.OutputDataReceived += (sender, e) => { LogService.Log(e.Data, Color.White); if (_stopToken.IsCancellationRequested) p.Kill(); };
-            p.ErrorDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Brown); if (_stopToken.IsCancellationRequested) p.Kill(); };
+            p.OutputDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Empty, "PROC_N"); if (_stopToken.IsCancellationRequested) p.Kill(); };
+            p.ErrorDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Empty, "PROC_E"); if (_stopToken.IsCancellationRequested) p.Kill(); };
 
             p.Start();
 

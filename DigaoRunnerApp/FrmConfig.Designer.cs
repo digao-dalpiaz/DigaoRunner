@@ -35,6 +35,7 @@
             LbErrorColor = new Label();
             LbNormalColor = new Label();
             BoxConsole = new GroupBox();
+            ckWordWrap = new CheckBox();
             BtnDefaults = new Button();
             LbBackColor = new Label();
             BoxBackColor = new Panel();
@@ -42,7 +43,10 @@
             BoxNormalColor = new Panel();
             BtnOK = new Button();
             BtnCancel = new Button();
-            ckWordWrap = new CheckBox();
+            BoxProcErrorColor = new Panel();
+            BoxProcNormalColor = new Panel();
+            label1 = new Label();
+            label2 = new Label();
             BoxConsole.SuspendLayout();
             SuspendLayout();
             // 
@@ -100,6 +104,10 @@
             // 
             // BoxConsole
             // 
+            BoxConsole.Controls.Add(BoxProcErrorColor);
+            BoxConsole.Controls.Add(BoxProcNormalColor);
+            BoxConsole.Controls.Add(label1);
+            BoxConsole.Controls.Add(label2);
             BoxConsole.Controls.Add(ckWordWrap);
             BoxConsole.Controls.Add(BtnDefaults);
             BoxConsole.Controls.Add(LbBackColor);
@@ -114,14 +122,24 @@
             BoxConsole.Controls.Add(EdSize);
             BoxConsole.Location = new Point(16, 16);
             BoxConsole.Name = "BoxConsole";
-            BoxConsole.Size = new Size(536, 264);
+            BoxConsole.Size = new Size(536, 336);
             BoxConsole.TabIndex = 0;
             BoxConsole.TabStop = false;
             BoxConsole.Text = "Console";
             // 
+            // ckWordWrap
+            // 
+            ckWordWrap.AutoSize = true;
+            ckWordWrap.Location = new Point(384, 224);
+            ckWordWrap.Name = "ckWordWrap";
+            ckWordWrap.Size = new Size(104, 24);
+            ckWordWrap.TabIndex = 11;
+            ckWordWrap.Text = "Word wrap";
+            ckWordWrap.UseVisualStyleBackColor = true;
+            // 
             // BtnDefaults
             // 
-            BtnDefaults.Location = new Point(24, 200);
+            BtnDefaults.Location = new Point(24, 280);
             BtnDefaults.Name = "BtnDefaults";
             BtnDefaults.Size = new Size(120, 40);
             BtnDefaults.TabIndex = 10;
@@ -167,7 +185,7 @@
             // 
             // BtnOK
             // 
-            BtnOK.Location = new Point(160, 288);
+            BtnOK.Location = new Point(160, 360);
             BtnOK.Name = "BtnOK";
             BtnOK.Size = new Size(120, 40);
             BtnOK.TabIndex = 1;
@@ -178,22 +196,48 @@
             // BtnCancel
             // 
             BtnCancel.DialogResult = DialogResult.Cancel;
-            BtnCancel.Location = new Point(288, 288);
+            BtnCancel.Location = new Point(288, 360);
             BtnCancel.Name = "BtnCancel";
             BtnCancel.Size = new Size(120, 40);
             BtnCancel.TabIndex = 2;
             BtnCancel.Text = "Cancel";
             BtnCancel.UseVisualStyleBackColor = true;
             // 
-            // ckWordWrap
+            // BoxProcErrorColor
             // 
-            ckWordWrap.AutoSize = true;
-            ckWordWrap.Location = new Point(384, 208);
-            ckWordWrap.Name = "ckWordWrap";
-            ckWordWrap.Size = new Size(104, 24);
-            ckWordWrap.TabIndex = 11;
-            ckWordWrap.Text = "Word wrap";
-            ckWordWrap.UseVisualStyleBackColor = true;
+            BoxProcErrorColor.Cursor = Cursors.Hand;
+            BoxProcErrorColor.Location = new Point(192, 216);
+            BoxProcErrorColor.Name = "BoxProcErrorColor";
+            BoxProcErrorColor.Size = new Size(152, 40);
+            BoxProcErrorColor.TabIndex = 15;
+            BoxProcErrorColor.Click += ColorClick;
+            // 
+            // BoxProcNormalColor
+            // 
+            BoxProcNormalColor.Cursor = Cursors.Hand;
+            BoxProcNormalColor.Location = new Point(24, 216);
+            BoxProcNormalColor.Name = "BoxProcNormalColor";
+            BoxProcNormalColor.Size = new Size(152, 40);
+            BoxProcNormalColor.TabIndex = 14;
+            BoxProcNormalColor.Click += ColorClick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(189, 192);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 20);
+            label1.TabIndex = 12;
+            label1.Text = "Error color";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(21, 192);
+            label2.Name = "label2";
+            label2.Size = new Size(97, 20);
+            label2.TabIndex = 13;
+            label2.Text = "Normal color";
             // 
             // FrmConfig
             // 
@@ -201,7 +245,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = BtnCancel;
-            ClientSize = new Size(568, 340);
+            ClientSize = new Size(568, 412);
             Controls.Add(BtnCancel);
             Controls.Add(BtnOK);
             Controls.Add(BoxConsole);
@@ -235,5 +279,9 @@
         private Panel BoxBackColor;
         private Button BtnDefaults;
         private CheckBox ckWordWrap;
+        private Panel BoxProcErrorColor;
+        private Panel BoxProcNormalColor;
+        private Label label1;
+        private Label label2;
     }
 }
