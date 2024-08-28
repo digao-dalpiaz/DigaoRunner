@@ -67,6 +67,8 @@ namespace DigaoRunnerApp
             };
 
             EdLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", LogService.DEFAULT_COLOR_BACK.ToArgb()));
+
+            EdLog.WordWrap = (int)key.GetValue("WordWrap", LogService.DEFAULT_WORD_WRAP ? 1 : 0) == 1;
         }
 
         private void SaveReg()
@@ -80,6 +82,8 @@ namespace DigaoRunnerApp
             key.SetValue("ColorError", LogService.Colors.Error.ToArgb());
 
             key.SetValue("ColorBack", EdLog.BackColor.ToArgb());
+
+            key.SetValue("WordWrap", EdLog.WordWrap ? 1 : 0);
         }
 
         private void ChangePage(bool fieldsPage)

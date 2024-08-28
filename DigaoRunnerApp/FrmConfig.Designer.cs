@@ -42,6 +42,7 @@
             BoxNormalColor = new Panel();
             BtnOK = new Button();
             BtnCancel = new Button();
+            ckWordWrap = new CheckBox();
             BoxConsole.SuspendLayout();
             SuspendLayout();
             // 
@@ -99,6 +100,7 @@
             // 
             // BoxConsole
             // 
+            BoxConsole.Controls.Add(ckWordWrap);
             BoxConsole.Controls.Add(BtnDefaults);
             BoxConsole.Controls.Add(LbBackColor);
             BoxConsole.Controls.Add(BoxBackColor);
@@ -183,6 +185,16 @@
             BtnCancel.Text = "Cancel";
             BtnCancel.UseVisualStyleBackColor = true;
             // 
+            // ckWordWrap
+            // 
+            ckWordWrap.AutoSize = true;
+            ckWordWrap.Location = new Point(384, 208);
+            ckWordWrap.Name = "ckWordWrap";
+            ckWordWrap.Size = new Size(104, 24);
+            ckWordWrap.TabIndex = 11;
+            ckWordWrap.Text = "Word wrap";
+            ckWordWrap.UseVisualStyleBackColor = true;
+            // 
             // FrmConfig
             // 
             AcceptButton = BtnOK;
@@ -222,5 +234,6 @@
         private Label LbBackColor;
         private Panel BoxBackColor;
         private Button BtnDefaults;
+        private CheckBox ckWordWrap;
     }
 }

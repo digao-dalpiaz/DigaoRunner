@@ -10,6 +10,7 @@ namespace DigaoRunnerApp.Services
         public readonly static Color DEFAULT_COLOR_NORMAL = Color.LimeGreen;
         public readonly static Color DEFAULT_COLOR_ERROR = Color.Crimson;
         public readonly static Color DEFAULT_COLOR_BACK = Color.FromArgb(30, 30, 30);
+        public readonly static bool DEFAULT_WORD_WRAP = true;
 
         public static FrmMain Form { get; set; }
 

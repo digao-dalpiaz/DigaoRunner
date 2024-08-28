@@ -18,6 +18,8 @@ namespace DigaoRunnerApp
             BoxErrorColor.BackColor = LogService.Colors.Error;
 
             BoxBackColor.BackColor = LogService.Form.EdLog.BackColor;
+
+            ckWordWrap.Checked = LogService.Form.EdLog.WordWrap;
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
@@ -58,6 +60,8 @@ namespace DigaoRunnerApp
 
             LogService.Form.EdLog.BackColor = BoxBackColor.BackColor;
 
+            LogService.Form.EdLog.WordWrap = ckWordWrap.Checked;
+
             DialogResult = DialogResult.OK;
         }
 
@@ -96,6 +100,8 @@ namespace DigaoRunnerApp
             BoxNormalColor.BackColor = LogService.DEFAULT_COLOR_NORMAL;
             BoxErrorColor.BackColor = LogService.DEFAULT_COLOR_ERROR;
             BoxBackColor.BackColor = LogService.DEFAULT_COLOR_BACK;
+
+            ckWordWrap.Checked = LogService.DEFAULT_WORD_WRAP;
         }
 
     }

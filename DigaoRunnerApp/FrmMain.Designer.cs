@@ -56,7 +56,6 @@
             EdLog.Location = new Point(0, 27);
             EdLog.Name = "EdLog";
             EdLog.ReadOnly = true;
-            EdLog.ScrollBars = RichTextBoxScrollBars.ForcedVertical;
             EdLog.Size = new Size(987, 475);
             EdLog.TabIndex = 0;
             EdLog.Text = "";
