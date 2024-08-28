@@ -116,6 +116,7 @@
             ButtonBar.Items.AddRange(new ToolStripItem[] { BtnRun, BtnCancel, BtnConfig, BtnMore });
             ButtonBar.Location = new Point(0, 0);
             ButtonBar.Name = "ButtonBar";
+            ButtonBar.ShowItemToolTips = false;
             ButtonBar.Size = new Size(987, 27);
             ButtonBar.TabIndex = 2;
             // 
