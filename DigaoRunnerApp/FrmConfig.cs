@@ -11,15 +11,16 @@ namespace DigaoRunnerApp
 
         private void FrmConfig_Load(object sender, EventArgs e)
         {
-            EdFont.Text = LogService.Form.EdLog.Font.Name;
-            EdSize.Text = LogService.Form.EdLog.Font.Size.ToString();
+            var customization = Customization.Instance;
 
-            BoxNormalColor.BackColor = LogService.Colors.Normal;
-            BoxErrorColor.BackColor = LogService.Colors.Error;
+            EdFont.Text = customization.Font;
+            EdSize.Text = customization.Size.ToString();
 
-            BoxBackColor.BackColor = LogService.Form.EdLog.BackColor;
+            BoxNormalColor.BackColor = customization.ColorNormal;
+            BoxErrorColor.BackColor = customization.ColorError;
+            BoxBackColor.BackColor = customization.ColorBack;
 
-            ckWordWrap.Checked = LogService.Form.EdLog.WordWrap;
+            ckWordWrap.Checked = customization.WordWrap;
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
@@ -53,14 +54,21 @@ namespace DigaoRunnerApp
 
             //
 
-            LogService.Form.EdLog.Font = new Font(EdFont.Text, fontSize);
+            var customization = Customization.Instance;
 
-            LogService.Colors.Normal = BoxNormalColor.BackColor;
-            LogService.Colors.Error = BoxErrorColor.BackColor;
+            customization.Font = EdFont.Text;
+            customization.Size = fontSize;
 
-            LogService.Form.EdLog.BackColor = BoxBackColor.BackColor;
+            customization.ColorNormal = BoxNormalColor.BackColor;
+            customization.ColorError = BoxErrorColor.BackColor;
+            customization.ColorBack = BoxBackColor.BackColor;
 
-            LogService.Form.EdLog.WordWrap = ckWordWrap.Checked;
+            customization.WordWrap = ckWordWrap.Checked;
+
+            //
+
+            customization.Save();
+            customization.LoadVisual();
 
             DialogResult = DialogResult.OK;
         }
@@ -94,14 +102,16 @@ namespace DigaoRunnerApp
 
         private void BtnDefaults_Click(object sender, EventArgs e)
         {
-            EdFont.Text = LogService.DEFAULT_FONT;
-            EdSize.Text = LogService.DEFAULT_SIZE.ToString();
+            var defaults = new Customization();
 
-            BoxNormalColor.BackColor = LogService.DEFAULT_COLOR_NORMAL;
-            BoxErrorColor.BackColor = LogService.DEFAULT_COLOR_ERROR;
-            BoxBackColor.BackColor = LogService.DEFAULT_COLOR_BACK;
+            EdFont.Text = defaults.Font;
+            EdSize.Text = defaults.Size.ToString();
 
-            ckWordWrap.Checked = LogService.DEFAULT_WORD_WRAP;
+            BoxNormalColor.BackColor = defaults.ColorNormal;
+            BoxErrorColor.BackColor = defaults.ColorError;
+            BoxBackColor.BackColor = defaults.ColorBack;
+
+            ckWordWrap.Checked = defaults.WordWrap;
         }
 
     }

@@ -1,7 +1,6 @@
 using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
 using DigaoRunnerApp.Services;
-using Microsoft.Win32;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -52,40 +51,6 @@ namespace DigaoRunnerApp
             WindowPlace.SaveWindowStateToRegistry(this, REG_KEY);
         }
 
-        private void LoadReg()
-        {
-            using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
-
-            EdLog.Font = new Font(
-                (string)key.GetValue("FontName", LogService.DEFAULT_FONT),
-                float.Parse((string)key.GetValue("FontSize", LogService.DEFAULT_SIZE.ToString())));
-
-            LogService.Colors = new()
-            {
-                Normal = Color.FromArgb((int)key.GetValue("ColorNormal", LogService.DEFAULT_COLOR_NORMAL.ToArgb())),
-                Error = Color.FromArgb((int)key.GetValue("ColorError", LogService.DEFAULT_COLOR_ERROR.ToArgb())),
-            };
-
-            EdLog.BackColor = Color.FromArgb((int)key.GetValue("ColorBack", LogService.DEFAULT_COLOR_BACK.ToArgb()));
-
-            EdLog.WordWrap = (int)key.GetValue("WordWrap", LogService.DEFAULT_WORD_WRAP ? 1 : 0) == 1;
-        }
-
-        private void SaveReg()
-        {
-            using var key = Registry.CurrentUser.CreateSubKey(REG_KEY);
-
-            key.SetValue("FontName", EdLog.Font.Name);
-            key.SetValue("FontSize", EdLog.Font.Size);
-
-            key.SetValue("ColorNormal", LogService.Colors.Normal.ToArgb());
-            key.SetValue("ColorError", LogService.Colors.Error.ToArgb());
-
-            key.SetValue("ColorBack", EdLog.BackColor.ToArgb());
-
-            key.SetValue("WordWrap", EdLog.WordWrap ? 1 : 0);
-        }
-
         private void ChangePage(bool fieldsPage)
         {
             BoxFields.Visible = fieldsPage;
@@ -95,7 +60,8 @@ namespace DigaoRunnerApp
         private void FrmMain_Load(object sender, EventArgs e)
         {
             WindowPlace.LoadWindowStateFromRegistry(this, REG_KEY);
-            LoadReg();
+            Customization.Load();
+            Customization.Instance.LoadVisual();
 
             try
             {
@@ -244,11 +210,7 @@ namespace DigaoRunnerApp
 
         private void BtnConfig_Click(object sender, EventArgs e)
         {
-            var settings = new FrmConfig();
-            if (settings.ShowDialog() == DialogResult.OK)
-            {
-                SaveReg();
-            }
+            new FrmConfig().ShowDialog();
         }
 
         private void StDigaoDalpiaz_Click(object sender, EventArgs e)

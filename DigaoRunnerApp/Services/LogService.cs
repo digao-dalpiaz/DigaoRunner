@@ -5,22 +5,7 @@ namespace DigaoRunnerApp.Services
     public class LogService
     {
 
-        public readonly static string DEFAULT_FONT = "Consolas";
-        public readonly static float DEFAULT_SIZE = 12;
-        public readonly static Color DEFAULT_COLOR_NORMAL = Color.LimeGreen;
-        public readonly static Color DEFAULT_COLOR_ERROR = Color.Crimson;
-        public readonly static Color DEFAULT_COLOR_BACK = Color.FromArgb(30, 30, 30);
-        public readonly static bool DEFAULT_WORD_WRAP = true;
-
         public static FrmMain Form { get; set; }
-
-        public static DefColors Colors { get; set; }
-
-        public class DefColors
-        {
-            public Color Normal;
-            public Color Error;
-        }
 
         public static void SetStatus(string status, StatusType type)
         {
@@ -62,10 +47,10 @@ namespace DigaoRunnerApp.Services
                 switch (type)
                 {
                     case "N":
-                        color = Colors.Normal;
+                        color = Customization.Instance.ColorNormal;
                         break;
                     case "E":
-                        color = Colors.Error;
+                        color = Customization.Instance.ColorError;
                         break;
                 }
 
