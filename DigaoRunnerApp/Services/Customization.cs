@@ -36,16 +36,16 @@ namespace DigaoRunnerApp.Services
             }
         }
 
+        public void Save()
+        {
+            File.WriteAllText(GetFile(), JsonConvert.SerializeObject(this));
+        }
+
         public void LoadVisual()
         {
             LogService.Form.EdLog.Font = new Font(Font, Size);
             LogService.Form.EdLog.WordWrap = WordWrap;
             LogService.Form.EdLog.BackColor = ColorBack;
-        }
-
-        public void Save()
-        {
-            File.WriteAllText(GetFile(), JsonConvert.SerializeObject(this));
         }
 
     }
