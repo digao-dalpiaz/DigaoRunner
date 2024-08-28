@@ -35,6 +35,10 @@
             LbErrorColor = new Label();
             LbNormalColor = new Label();
             BoxConsole = new GroupBox();
+            BoxProcErrorColor = new Panel();
+            BoxProcNormalColor = new Panel();
+            LbProcErrorColor = new Label();
+            LbProcNormalColor = new Label();
             ckWordWrap = new CheckBox();
             BtnDefaults = new Button();
             LbBackColor = new Label();
@@ -43,10 +47,6 @@
             BoxNormalColor = new Panel();
             BtnOK = new Button();
             BtnCancel = new Button();
-            BoxProcErrorColor = new Panel();
-            BoxProcNormalColor = new Panel();
-            label1 = new Label();
-            label2 = new Label();
             BoxConsole.SuspendLayout();
             SuspendLayout();
             // 
@@ -106,8 +106,8 @@
             // 
             BoxConsole.Controls.Add(BoxProcErrorColor);
             BoxConsole.Controls.Add(BoxProcNormalColor);
-            BoxConsole.Controls.Add(label1);
-            BoxConsole.Controls.Add(label2);
+            BoxConsole.Controls.Add(LbProcErrorColor);
+            BoxConsole.Controls.Add(LbProcNormalColor);
             BoxConsole.Controls.Add(ckWordWrap);
             BoxConsole.Controls.Add(BtnDefaults);
             BoxConsole.Controls.Add(LbBackColor);
@@ -126,6 +126,42 @@
             BoxConsole.TabIndex = 0;
             BoxConsole.TabStop = false;
             BoxConsole.Text = "Console";
+            // 
+            // BoxProcErrorColor
+            // 
+            BoxProcErrorColor.Cursor = Cursors.Hand;
+            BoxProcErrorColor.Location = new Point(192, 216);
+            BoxProcErrorColor.Name = "BoxProcErrorColor";
+            BoxProcErrorColor.Size = new Size(152, 40);
+            BoxProcErrorColor.TabIndex = 15;
+            BoxProcErrorColor.Click += ColorClick;
+            // 
+            // BoxProcNormalColor
+            // 
+            BoxProcNormalColor.Cursor = Cursors.Hand;
+            BoxProcNormalColor.Location = new Point(24, 216);
+            BoxProcNormalColor.Name = "BoxProcNormalColor";
+            BoxProcNormalColor.Size = new Size(152, 40);
+            BoxProcNormalColor.TabIndex = 14;
+            BoxProcNormalColor.Click += ColorClick;
+            // 
+            // LbProcErrorColor
+            // 
+            LbProcErrorColor.AutoSize = true;
+            LbProcErrorColor.Location = new Point(189, 192);
+            LbProcErrorColor.Name = "LbProcErrorColor";
+            LbProcErrorColor.Size = new Size(79, 20);
+            LbProcErrorColor.TabIndex = 12;
+            LbProcErrorColor.Text = "Error color";
+            // 
+            // LbProcNormalColor
+            // 
+            LbProcNormalColor.AutoSize = true;
+            LbProcNormalColor.Location = new Point(21, 192);
+            LbProcNormalColor.Name = "LbProcNormalColor";
+            LbProcNormalColor.Size = new Size(97, 20);
+            LbProcNormalColor.TabIndex = 13;
+            LbProcNormalColor.Text = "Normal color";
             // 
             // ckWordWrap
             // 
@@ -203,42 +239,6 @@
             BtnCancel.Text = "Cancel";
             BtnCancel.UseVisualStyleBackColor = true;
             // 
-            // BoxProcErrorColor
-            // 
-            BoxProcErrorColor.Cursor = Cursors.Hand;
-            BoxProcErrorColor.Location = new Point(192, 216);
-            BoxProcErrorColor.Name = "BoxProcErrorColor";
-            BoxProcErrorColor.Size = new Size(152, 40);
-            BoxProcErrorColor.TabIndex = 15;
-            BoxProcErrorColor.Click += ColorClick;
-            // 
-            // BoxProcNormalColor
-            // 
-            BoxProcNormalColor.Cursor = Cursors.Hand;
-            BoxProcNormalColor.Location = new Point(24, 216);
-            BoxProcNormalColor.Name = "BoxProcNormalColor";
-            BoxProcNormalColor.Size = new Size(152, 40);
-            BoxProcNormalColor.TabIndex = 14;
-            BoxProcNormalColor.Click += ColorClick;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(189, 192);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 20);
-            label1.TabIndex = 12;
-            label1.Text = "Error color";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(21, 192);
-            label2.Name = "label2";
-            label2.Size = new Size(97, 20);
-            label2.TabIndex = 13;
-            label2.Text = "Normal color";
-            // 
             // FrmConfig
             // 
             AcceptButton = BtnOK;
@@ -281,7 +281,7 @@
         private CheckBox ckWordWrap;
         private Panel BoxProcErrorColor;
         private Panel BoxProcNormalColor;
-        private Label label1;
-        private Label label2;
+        private Label LbProcErrorColor;
+        private Label LbProcNormalColor;
     }
 }
