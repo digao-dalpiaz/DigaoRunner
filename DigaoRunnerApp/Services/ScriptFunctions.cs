@@ -26,6 +26,11 @@ namespace DigaoRunnerApp.Services
             return value;
         }
 
+        public T GetField<T>(string name)
+        {
+            return (T)GetField(name);
+        }
+
         public void Echo(string text = null, Color? color = null)
         {
             LogService.Log(text, color ?? Color.Empty, color == null ? "N" : null);
