@@ -15,6 +15,7 @@ Here is an example of a Digao Runner script, used specifically to create the pac
 ```csharp
 @DIGAOSCRIPT
 VERSION=1
+TITLE=Create Digao Runner Package
 
 @CODE
 Echo("========================================================", Color.Cyan);
@@ -24,9 +25,10 @@ Echo("========================================================", Color.Cyan);
 int ret;
 
 string vsWhere = @"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe";
+string sevenZip = @"C:\Program Files\7-zip\7z.exe";
 string pathProject = @".\DigaoRunnerApp\DigaoRunnerApp.csproj";
 string tmpBuildDir = @".\Temp_Build";
-string packageFile = @".\package.zip";
+string packageFile = @".\DigaoRunner.zip";
 
 string vsPath;
 ret = RunProcessReadOutput(vsWhere, "/latest /property installationPath", ref vsPath);
@@ -36,7 +38,6 @@ vsPath = vsPath.Split(Environment.NewLine).FirstOrDefault();
 if (string.IsNullOrEmpty(vsPath)) Abort("Visual Studio path empty");
 
 string msBuildExe = Path.Combine(vsPath, @"MSBuild\Current\bin\msbuild.exe");
-if (!File.Exists(msBuildExe)) Abort("MSBUILD.EXE not found: " + msBuildExe);
 
 if (Directory.Exists(tmpBuildDir)) Directory.Delete(tmpBuildDir, true);
 if (File.Exists(packageFile)) File.Delete(packageFile);
@@ -49,11 +50,13 @@ ret = RunProcess(msBuildExe,
 if (ret != 0) Abort("Error compiling project");
 
 Echo("Create zip file");
+//RunProcess(sevenZip, $"a -sfx DigaoRunnerSetup.exe \"{tmpBuildDir}\"");
 ZipFile.CreateFromDirectory(tmpBuildDir, packageFile);
 
 Directory.Delete(tmpBuildDir, true);
 
 Echo("Package successfully created!", Color.Yellow);
+
 ```
 
 # Installation
