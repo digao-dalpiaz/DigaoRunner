@@ -124,6 +124,8 @@ The fields have the following structure in JSON format:
 
 `Editable` property is optional and allows configure an editable Combo Box.
 
+![Fields](images/preview_fields.png)
+
 ## Code Tricks
 
 The following imports are internally specified:
