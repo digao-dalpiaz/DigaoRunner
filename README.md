@@ -55,3 +55,15 @@ Directory.Delete(tmpBuildDir, true);
 
 Echo("Package successfully created!", Color.Yellow);
 ```
+
+# Installation
+
+1. Download and install [.NET 8 Desktop Runtime x64](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
+2. Download last Digao Runner release (.zip) from [here](https://github.com/digao-dalpiaz/DigaoRunner/releases/latest)
+
+3. Extract zip to a folder in your computer (Example: C:\DigaoRunner)
+
+4. You may open DigaoRunnerApp.exe and go to menu "More" > "Register .drs files", so the scripts will automatically run with this program.
+
+You are set. Enjoy!
