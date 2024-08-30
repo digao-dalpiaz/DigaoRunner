@@ -126,5 +126,11 @@ The fields have the following structure in JSON format:
 
 Use Abort method to interrupt execution with a message
 ```csharp
-Abort(string message)
+void Abort(string message);
+```
+
+Use GetField method to get a field value
+```csharp
+object GetField(string name);
+T GetField<T>(string name)
 ```
