@@ -77,10 +77,30 @@ To create scripts, use the following structure in the file with the .drs extensi
 
 ```csharp
 @DIGAOSCRIPT
-VERSION=1
-TITLE=You script title --> It will appear in the window title (Optional)
-ADMIN=true --> If specified, it will request Administrator elevation when running the script (Optional)
+
+VAR1=value
+VAR2=value
+VAR3=value
+
+$FIELD1={...}
+$FIELD2={...}
+$FIELD3={...}
 
 @CODE
 Your code here in C# format
 ```
+
+## Header section
+
+The header section is the part after `@DIGAOSCRIPT` identifier, and before `@CODE` section. In this part, you can specify variable and fields.
+
+### Header Variables
+
+- `VERSION=1` (required)
+- `TITLE=Your script title` (optional) it will appear in the window title
+- `ADMIN=true` (optional) if specified, it will request Administrator elevation when running the script
+- `$MY_FIELD={...}` (optional) it will show the field input when running script, before executing code section
+
+**If any field is specified (using prefix `$`), then when the script is run, the user will first be prompted to fill in the fields.**
+
+Comments are allowed in header section using `//` prefix
