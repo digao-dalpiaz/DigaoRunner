@@ -70,3 +70,17 @@ Echo("Package successfully created!", Color.Yellow);
 4. You may open DigaoRunnerApp.exe and go to menu "More" > "Register .drs files", so the scripts will automatically run with this program.
 
 You are set. Enjoy!
+
+# Script file structure
+
+To create scripts, use the following structure in the file with the .drs extension:
+
+```csharp
+@DIGAOSCRIPT
+VERSION=1
+TITLE=You script title --> It will appear in the window title (Optional)
+ADMIN=true --> If specified, it will request Administrator elevation when running the script (Optional)
+
+@CODE
+Your code here in C# format
+```
