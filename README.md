@@ -124,13 +124,52 @@ The fields have the following structure in JSON format:
 
 ## Code Tricks
 
-Use Abort method to interrupt execution with a message
+Use Abort method to interrupt execution with a message.
 ```csharp
 void Abort(string message);
 ```
 
-Use GetField method to get a field value
+Use GetField method to get a field value.
 ```csharp
 object GetField(string name);
 T GetField<T>(string name)
 ```
+
+Use Echo method to print a message line in the console.
+```csharp
+void Echo(string text = null, Color? color = null);
+```
+
+Use Sleep method to wait for specified miliseconds.
+```csharp
+void Sleep(int ms);
+```
+
+Use CheckStop method if you want to check if cancel was requested during some code execution.
+```csharp
+void CheckStop();
+```
+
+Use CopyFile method if you want to copy a file with progress bar
+```csharp
+void CopyFile(string sourceFilePath, string destinationFilePath);
+```
+
+Use SetSystemConsoleEncoding method before run a process to ensure local system encoding.
+```csharp
+void SetSystemConsoleEncoding();
+```
+
+Use RunProcess method to run an external process and monitoring output lines in console.
+The returning is the process Exit Code.
+```csharp
+int RunProcess(string fileName, string arguments);
+```
+
+Use RunProcessReadOutput method to run an external process and get the output lines in a string variable (the output lines will not be automatically printed in the console).
+The returning is the process Exit Code.
+```csharp
+int RunProcessReadOutput(string fileName, string arguments, ref string output);
+```
+
+
