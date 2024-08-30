@@ -104,3 +104,16 @@ The header section is the part after `@DIGAOSCRIPT` identifier, and before `@COD
 **If any field is specified (using prefix `$`), then when the script is run, the user will first be prompted to fill in the fields.**
 
 Comments are allowed in header section using `//` prefix
+
+### Header Fields
+
+The fields have the following structure in JSON format:
+
+`$MY_FIELD={"Label": "Field Description", "Type": "...", "Default": "...", "Items": [], Editable: true}`
+
+`Type` property values:
+- "text" (TextBox)
+- "check" (CheckBox)
+- "combo" (ComboBox)
+
+`Default` property is optional and must be according to the `Type`. Example: When `Type` = `text`, default value must be string (`"default value"`). When `Type` = `check`, default value must be boolean (`true` or `false`).
