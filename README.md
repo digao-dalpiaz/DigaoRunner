@@ -124,6 +124,18 @@ The fields have the following structure in JSON format:
 
 ## Code Tricks
 
+The following imports are internally specified:
+- System
+- System.Text
+- System.Linq
+- System.IO
+- System.IO.Compression
+- System.Diagnostics
+- System.Drawing
+- Microsoft.Win32
+
+So, you may use classes from these imports directly. Example: `StringBuilder` (comes from System.Text).
+
 Use Abort method to interrupt execution with a message.
 ```csharp
 void Abort(string message);
