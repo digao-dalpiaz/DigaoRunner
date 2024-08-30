@@ -28,6 +28,7 @@ namespace DigaoRunnerApp.Services
                     "System.IO.Compression",
                     "System.Diagnostics",
                     "System.Drawing",
+                    "Microsoft.Win32",
                 ])
                 .WithEmitDebugInformation(true)
                 .WithOptimizationLevel(OptimizationLevel.Release);
