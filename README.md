@@ -12,7 +12,7 @@ With all this in mind, I developed Digao Runner, which is essentially a debugger
 
 Here is an example of a Digao Runner script, used specifically to create the package for the program itself:
 
-```
+```csharp
 @DIGAOSCRIPT
 VERSION=1
 
