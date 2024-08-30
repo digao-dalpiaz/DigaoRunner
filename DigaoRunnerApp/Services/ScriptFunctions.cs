@@ -94,9 +94,9 @@ namespace DigaoRunnerApp.Services
             _consoleEncoding = systemEncoding;
         }
 
-        public int RunProcess(string fileName, string arguments)
+        private ProcessStartInfo GenerateProcessInfo(string fileName, string arguments)
         {
-            var processInfo = new ProcessStartInfo
+            return new ProcessStartInfo
             {
                 FileName = fileName,
                 Arguments = arguments,
@@ -108,12 +108,22 @@ namespace DigaoRunnerApp.Services
                 StandardOutputEncoding = _consoleEncoding,
                 StandardErrorEncoding = _consoleEncoding
             };
+        }
 
+        public int RunProcess(string fileName, string arguments)
+        {
             using Process p = new();
-            p.StartInfo = processInfo;
+            p.StartInfo = GenerateProcessInfo(fileName, arguments);
 
-            p.OutputDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Empty, "PROC_N"); if (_stopToken.IsCancellationRequested) p.Kill(); };
-            p.ErrorDataReceived += (sender, e) => { LogService.Log(e.Data, Color.Empty, "PROC_E"); if (_stopToken.IsCancellationRequested) p.Kill(); };
+            void DoLine(DataReceivedEventArgs e, string kind)
+            {
+                LogService.Log(e.Data, Color.Empty, "PROC_N"); 
+
+                if (_stopToken.IsCancellationRequested) p.Kill();
+            }
+
+            p.OutputDataReceived += (sender, e) => DoLine(e, "PROC_N");
+            p.ErrorDataReceived += (sender, e) => DoLine(e, "PROC_E");
 
             p.Start();
 
@@ -121,6 +131,21 @@ namespace DigaoRunnerApp.Services
             p.BeginErrorReadLine();
 
             p.WaitForExit();
+
+            CheckStop();
+
+            return p.ExitCode;
+        }
+
+        public int RunProcessReadOutput(string fileName, string arguments, ref string output)
+        {
+            using Process p = new();
+            p.StartInfo = GenerateProcessInfo(fileName, arguments);
+
+            p.Start();
+            p.WaitForExit();
+
+            output = p.StandardOutput.ReadToEnd();
 
             CheckStop();
 

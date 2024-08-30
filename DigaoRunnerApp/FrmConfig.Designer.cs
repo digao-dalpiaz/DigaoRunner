@@ -35,6 +35,7 @@
             LbErrorColor = new Label();
             LbNormalColor = new Label();
             BoxConsole = new GroupBox();
+            LbExternalProcess = new Label();
             BoxProcErrorColor = new Panel();
             BoxProcNormalColor = new Panel();
             LbProcErrorColor = new Label();
@@ -53,7 +54,7 @@
             // LbFont
             // 
             LbFont.AutoSize = true;
-            LbFont.Location = new Point(21, 40);
+            LbFont.Location = new Point(21, 32);
             LbFont.Name = "LbFont";
             LbFont.Size = new Size(38, 20);
             LbFont.TabIndex = 0;
@@ -62,7 +63,7 @@
             // EdFont
             // 
             EdFont.FormattingEnabled = true;
-            EdFont.Location = new Point(24, 64);
+            EdFont.Location = new Point(24, 56);
             EdFont.Name = "EdFont";
             EdFont.Size = new Size(376, 28);
             EdFont.TabIndex = 0;
@@ -71,7 +72,7 @@
             // LbSize
             // 
             LbSize.AutoSize = true;
-            LbSize.Location = new Point(413, 40);
+            LbSize.Location = new Point(413, 32);
             LbSize.Name = "LbSize";
             LbSize.Size = new Size(36, 20);
             LbSize.TabIndex = 2;
@@ -79,7 +80,7 @@
             // 
             // EdSize
             // 
-            EdSize.Location = new Point(416, 64);
+            EdSize.Location = new Point(416, 56);
             EdSize.Name = "EdSize";
             EdSize.Size = new Size(96, 27);
             EdSize.TabIndex = 1;
@@ -87,7 +88,7 @@
             // LbErrorColor
             // 
             LbErrorColor.AutoSize = true;
-            LbErrorColor.Location = new Point(189, 112);
+            LbErrorColor.Location = new Point(189, 96);
             LbErrorColor.Name = "LbErrorColor";
             LbErrorColor.Size = new Size(79, 20);
             LbErrorColor.TabIndex = 4;
@@ -96,7 +97,7 @@
             // LbNormalColor
             // 
             LbNormalColor.AutoSize = true;
-            LbNormalColor.Location = new Point(21, 112);
+            LbNormalColor.Location = new Point(21, 96);
             LbNormalColor.Name = "LbNormalColor";
             LbNormalColor.Size = new Size(97, 20);
             LbNormalColor.TabIndex = 5;
@@ -104,6 +105,7 @@
             // 
             // BoxConsole
             // 
+            BoxConsole.Controls.Add(LbExternalProcess);
             BoxConsole.Controls.Add(BoxProcErrorColor);
             BoxConsole.Controls.Add(BoxProcNormalColor);
             BoxConsole.Controls.Add(LbProcErrorColor);
@@ -122,15 +124,25 @@
             BoxConsole.Controls.Add(EdSize);
             BoxConsole.Location = new Point(16, 16);
             BoxConsole.Name = "BoxConsole";
-            BoxConsole.Size = new Size(536, 336);
+            BoxConsole.Size = new Size(536, 296);
             BoxConsole.TabIndex = 0;
             BoxConsole.TabStop = false;
             BoxConsole.Text = "Console";
             // 
+            // LbExternalProcess
+            // 
+            LbExternalProcess.BackColor = Color.DarkGray;
+            LbExternalProcess.Location = new Point(24, 184);
+            LbExternalProcess.Name = "LbExternalProcess";
+            LbExternalProcess.Size = new Size(320, 24);
+            LbExternalProcess.TabIndex = 16;
+            LbExternalProcess.Text = "External Process";
+            LbExternalProcess.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // BoxProcErrorColor
             // 
             BoxProcErrorColor.Cursor = Cursors.Hand;
-            BoxProcErrorColor.Location = new Point(192, 216);
+            BoxProcErrorColor.Location = new Point(192, 232);
             BoxProcErrorColor.Name = "BoxProcErrorColor";
             BoxProcErrorColor.Size = new Size(152, 40);
             BoxProcErrorColor.TabIndex = 15;
@@ -139,7 +151,7 @@
             // BoxProcNormalColor
             // 
             BoxProcNormalColor.Cursor = Cursors.Hand;
-            BoxProcNormalColor.Location = new Point(24, 216);
+            BoxProcNormalColor.Location = new Point(24, 232);
             BoxProcNormalColor.Name = "BoxProcNormalColor";
             BoxProcNormalColor.Size = new Size(152, 40);
             BoxProcNormalColor.TabIndex = 14;
@@ -148,7 +160,7 @@
             // LbProcErrorColor
             // 
             LbProcErrorColor.AutoSize = true;
-            LbProcErrorColor.Location = new Point(189, 192);
+            LbProcErrorColor.Location = new Point(189, 208);
             LbProcErrorColor.Name = "LbProcErrorColor";
             LbProcErrorColor.Size = new Size(79, 20);
             LbProcErrorColor.TabIndex = 12;
@@ -157,7 +169,7 @@
             // LbProcNormalColor
             // 
             LbProcNormalColor.AutoSize = true;
-            LbProcNormalColor.Location = new Point(21, 192);
+            LbProcNormalColor.Location = new Point(21, 208);
             LbProcNormalColor.Name = "LbProcNormalColor";
             LbProcNormalColor.Size = new Size(97, 20);
             LbProcNormalColor.TabIndex = 13;
@@ -166,7 +178,7 @@
             // ckWordWrap
             // 
             ckWordWrap.AutoSize = true;
-            ckWordWrap.Location = new Point(384, 224);
+            ckWordWrap.Location = new Point(408, 184);
             ckWordWrap.Name = "ckWordWrap";
             ckWordWrap.Size = new Size(104, 24);
             ckWordWrap.TabIndex = 11;
@@ -175,7 +187,7 @@
             // 
             // BtnDefaults
             // 
-            BtnDefaults.Location = new Point(24, 280);
+            BtnDefaults.Location = new Point(392, 232);
             BtnDefaults.Name = "BtnDefaults";
             BtnDefaults.Size = new Size(120, 40);
             BtnDefaults.TabIndex = 10;
@@ -186,7 +198,7 @@
             // LbBackColor
             // 
             LbBackColor.AutoSize = true;
-            LbBackColor.Location = new Point(357, 112);
+            LbBackColor.Location = new Point(357, 96);
             LbBackColor.Name = "LbBackColor";
             LbBackColor.Size = new Size(126, 20);
             LbBackColor.TabIndex = 8;
@@ -195,7 +207,7 @@
             // BoxBackColor
             // 
             BoxBackColor.Cursor = Cursors.Hand;
-            BoxBackColor.Location = new Point(360, 136);
+            BoxBackColor.Location = new Point(360, 120);
             BoxBackColor.Name = "BoxBackColor";
             BoxBackColor.Size = new Size(152, 40);
             BoxBackColor.TabIndex = 9;
@@ -204,7 +216,7 @@
             // BoxErrorColor
             // 
             BoxErrorColor.Cursor = Cursors.Hand;
-            BoxErrorColor.Location = new Point(192, 136);
+            BoxErrorColor.Location = new Point(192, 120);
             BoxErrorColor.Name = "BoxErrorColor";
             BoxErrorColor.Size = new Size(152, 40);
             BoxErrorColor.TabIndex = 7;
@@ -213,7 +225,7 @@
             // BoxNormalColor
             // 
             BoxNormalColor.Cursor = Cursors.Hand;
-            BoxNormalColor.Location = new Point(24, 136);
+            BoxNormalColor.Location = new Point(24, 120);
             BoxNormalColor.Name = "BoxNormalColor";
             BoxNormalColor.Size = new Size(152, 40);
             BoxNormalColor.TabIndex = 6;
@@ -221,7 +233,7 @@
             // 
             // BtnOK
             // 
-            BtnOK.Location = new Point(160, 360);
+            BtnOK.Location = new Point(160, 320);
             BtnOK.Name = "BtnOK";
             BtnOK.Size = new Size(120, 40);
             BtnOK.TabIndex = 1;
@@ -232,7 +244,7 @@
             // BtnCancel
             // 
             BtnCancel.DialogResult = DialogResult.Cancel;
-            BtnCancel.Location = new Point(288, 360);
+            BtnCancel.Location = new Point(288, 320);
             BtnCancel.Name = "BtnCancel";
             BtnCancel.Size = new Size(120, 40);
             BtnCancel.TabIndex = 2;
@@ -245,7 +257,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = BtnCancel;
-            ClientSize = new Size(568, 412);
+            ClientSize = new Size(568, 375);
             Controls.Add(BtnCancel);
             Controls.Add(BtnOK);
             Controls.Add(BoxConsole);
@@ -283,5 +295,6 @@
         private Panel BoxProcNormalColor;
         private Label LbProcErrorColor;
         private Label LbProcNormalColor;
+        private Label LbExternalProcess;
     }
 }

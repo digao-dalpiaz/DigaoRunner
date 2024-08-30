@@ -1,0 +1,39 @@
+@DIGAOSCRIPT
+VERSION=1
+TITLE=Deploy Some Application XYZ
+//ADMIN=true
+
+//Fields
+$VERSION_NUMBER={"Type":"text", "Label": "Version Number", "Default": "0.0.0.0"}
+$SERVER_TARGET={"Type":"combo", "Label": "Select server destination", "Default": "SERVER2", "Items": ["SERVER1","SERVER2","SERVER3","SERVER4"]}
+$COPY_TO_SERVER={"Type":"check", "Label": "Copy application to server", "Default": true}
+
+@CODE
+Echo("============================================================", Color.Cyan);
+Echo("Deploy Application XYZ to Server: " + GetField("SERVER_TARGET"), Color.Cyan);
+Echo("============================================================", Color.Cyan);
+
+Echo();
+Echo("➡️ You are deploying application version " + GetField("VERSION_NUMBER"));
+
+if (GetField<bool>("COPY_TO_SERVER")) {
+	Echo("⚠️ Option to copy application enabled!");
+}
+
+Echo();
+Echo("Check server ping");
+
+SetSystemConsoleEncoding();
+var ret = RunProcess("ping.exe", "127.0.0.1");
+
+if (ret != 0) Abort("Server is not responding");
+
+Echo("Ping is ok!", Color.Cyan);
+Echo();
+
+for (int i = 1; i <= 5; i++) {
+	Echo($"{DateTime.Now} - Now deploying application - Step {i}");
+	Sleep(1000);
+}
+
+Echo("🆗 Application deployed successfully!", Color.Yellow);

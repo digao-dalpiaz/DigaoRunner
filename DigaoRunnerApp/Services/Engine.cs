@@ -22,6 +22,8 @@ namespace DigaoRunnerApp.Services
                 ])
                 .WithImports([
                     "System",
+                    "System.Text",
+                    "System.Linq",
                     "System.IO", //ref not required
                     "System.IO.Compression",
                     "System.Diagnostics",
