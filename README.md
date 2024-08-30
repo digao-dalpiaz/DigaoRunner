@@ -109,7 +109,7 @@ Comments are allowed in header section using `//` prefix
 
 The fields have the following structure in JSON format:
 
-`$MY_FIELD={"Label": "Field Description", "Type": "...", "Default": "...", "Items": [], Editable: true}`
+`$MY_FIELD={"Label": "Field Description", "Type": "...", "Default": ..., "Items": [], Editable: true}`
 
 `Type` property values:
 - "text" (TextBox)
@@ -117,3 +117,7 @@ The fields have the following structure in JSON format:
 - "combo" (ComboBox)
 
 `Default` property is optional and must be according to the `Type`. Example: When `Type` = `text`, default value must be string (`"default value"`). When `Type` = `check`, default value must be boolean (`true` or `false`).
+
+`Items` property is a string array and should be specified when `Type` = `combo`. Example: `["VALUE1", "VALUE2", "VALUE3"]`.
+
+`Editable` property is optional and allows configure an editable Combo Box.
