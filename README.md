@@ -121,3 +121,10 @@ The fields have the following structure in JSON format:
 `Items` property is a string array and should be specified when `Type` = `combo`. Example: `["VALUE1", "VALUE2", "VALUE3"]`.
 
 `Editable` property is optional and allows configure an editable Combo Box.
+
+## Code Tricks
+
+Use Abort method to interrupt execution with a message
+```csharp
+Abort(string message)
+```
