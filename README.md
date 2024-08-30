@@ -2,6 +2,8 @@
 
 ## Run scripts locally and remotely
 
+![Preview](images/preview_script_run.png)
+
 In my work environment, I frequently need to create scripts to automate processes. Whether it's to copy files from one place to another for deploying an application or even for more complex tasks involving multiple steps, such as installing services, configuring Windows settings, reading files and extracting information, or any other activity that can be automated.
 
 These are typically tasks where it's not worth writing a specific program. In such cases, we usually resort to a **Batch script (.BAT or .CMD)** or the more modern **PowerShell**.
