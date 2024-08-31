@@ -150,7 +150,7 @@ void Abort(string message);
 Use GetField method to get a field value.
 ```csharp
 object GetField(string name);
-T GetField<T>(string name)
+T GetField<T>(string name);
 ```
 
 Use Echo method to print a message line in the console.
