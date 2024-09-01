@@ -179,13 +179,13 @@ void SetSystemConsoleEncoding();
 ```
 
 Use RunProcess method to run an external process and monitoring output lines in console.
-The returning is the process Exit Code.
+The returning is the process Exit Code. There is a variable `LastExitCode` available too.
 ```csharp
 int RunProcess(string fileName, string arguments);
 ```
 
 Use RunProcessReadOutput method to run an external process and get the output lines in a string variable (the output lines will not be automatically printed in the console).
-The returning is the process Exit Code.
+The returning is the process Exit Code. There is a variable `LastExitCode` available too.
 ```csharp
 int RunProcessReadOutput(string fileName, string arguments, ref string output);
 ```
