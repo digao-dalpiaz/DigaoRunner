@@ -7,14 +7,14 @@ namespace DigaoRunnerApp.Services
 
         public static void Associate()
         {
-            const string EXT = ".drs";
-            const string CMD = "drs_auto_file";
+            const string EXT = ".ds";
+            const string CMD = "ds_auto_file";
 
             using var mainKey = Registry.ClassesRoot.CreateSubKey(EXT);
             mainKey.SetValue("", CMD);
 
             using var cmdKey = Registry.ClassesRoot.CreateSubKey(CMD);
-            cmdKey.SetValue("", "DigaoRunner Script File");
+            cmdKey.SetValue("", "Digao Script File");
 
             using var shellKey = cmdKey.CreateSubKey(@"shell\open\command");
             shellKey.SetValue("", $"\"{Environment.ProcessPath}\" \"%1\"");

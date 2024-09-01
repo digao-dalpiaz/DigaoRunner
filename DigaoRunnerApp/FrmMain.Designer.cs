@@ -160,7 +160,7 @@
             // 
             BtnRegisterExtension.Name = "BtnRegisterExtension";
             BtnRegisterExtension.Size = new Size(204, 26);
-            BtnRegisterExtension.Text = "Register .drs files";
+            BtnRegisterExtension.Text = "Register .ds files";
             BtnRegisterExtension.Click += BtnRegisterExtension_Click;
             // 
             // TimerControl

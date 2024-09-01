@@ -11,6 +11,8 @@ namespace DigaoRunnerApp.Services
 
         private Encoding _consoleEncoding = Encoding.UTF8;
 
+        public int LastExitCode;
+
         public static void Abort(string message)
         {
             throw new AbortException(message);
@@ -134,6 +136,7 @@ namespace DigaoRunnerApp.Services
 
             CheckStop();
 
+            LastExitCode = p.ExitCode;
             return p.ExitCode;
         }
 
@@ -149,6 +152,7 @@ namespace DigaoRunnerApp.Services
 
             CheckStop();
 
+            LastExitCode = p.ExitCode;
             return p.ExitCode;
         }
 
