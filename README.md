@@ -12,7 +12,7 @@ These are typically tasks where it's not worth writing a specific program. In su
 
 But let's be honest, for any of these scripts, the language is not very practical, and the script ends up being hard to read and understand, and it's not efficient. For example, error handling in these scripts is cumbersome, and typically, the processes continue even if an error occurs in the middle of the script.
 
-With all this in mind, I developed Digao Runner, which is essentially a debugger for scripts with the **.drs (Digao Runner Script)** extension, where you can write the script using **C# code** in a very practical and easy way. The code is very clean, has **exception handling**, and you can also configure **input fields** for the user to fill in at runtime, like parameters or variables of the script.
+With all this in mind, I developed Digao Runner, which is essentially a debugger for scripts with the **.ds (Digao Script)** extension, where you can write the script using **C# code** in a very practical and easy way. The code is very clean, has **exception handling**, and you can also configure **input fields** for the user to fill in at runtime, like parameters or variables of the script.
 
 Here is an example of a Digao Runner script, used specifically to create the package for the program itself:
 
@@ -71,13 +71,13 @@ Echo("Package successfully created!", Color.Yellow);
 
 3. Extract zip to a folder in your computer (Example: C:\DigaoRunner)
 
-4. You may open DigaoRunnerApp.exe and go to menu "More" > "Register .drs files", so the scripts will automatically run with this program.
+4. You may open DigaoRunnerApp.exe and go to menu "More" > "Register .ds files", so the scripts will automatically run with this program.
 
 You are set. Enjoy!
 
 # Script file structure
 
-To create scripts, use the following structure in the file with the .drs extension:
+To create scripts, use the following structure in the file with the .ds extension:
 
 ```csharp
 @DIGAOSCRIPT
