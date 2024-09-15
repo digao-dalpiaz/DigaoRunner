@@ -138,6 +138,7 @@ The following imports are internally specified:
 - System.IO.Compression
 - System.Diagnostics
 - System.Drawing
+- System.Text.RegularExpressions
 - Microsoft.Win32
 
 So, you may use classes from these imports directly. Example: `StringBuilder` (comes from System.Text).

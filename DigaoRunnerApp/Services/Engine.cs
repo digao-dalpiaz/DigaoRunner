@@ -28,6 +28,7 @@ namespace DigaoRunnerApp.Services
                     "System.IO.Compression",
                     "System.Diagnostics",
                     "System.Drawing",
+                    "System.Text.RegularExpressions",
                     "Microsoft.Win32",
                 ])
                 .WithEmitDebugInformation(true)
