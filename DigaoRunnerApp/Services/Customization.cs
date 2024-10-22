@@ -50,6 +50,7 @@ namespace DigaoRunnerApp.Services
             LogService.Form.EdLog.Font = new Font(Font, Size);
             LogService.Form.EdLog.WordWrap = WordWrap;
             LogService.Form.EdLog.BackColor = ColorBack;
+            LogService.Form.EdLog.ForeColor = ColorNormal;
         }
 
     }
