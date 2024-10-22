@@ -47,7 +47,7 @@
             if (e.Item.Selected || e.Item.Pressed)
             {
                 Rectangle rectangle = new(0, 0, e.Item.Size.Width - 1, e.Item.Size.Height - 1);
-                e.Graphics.FillRectangle(new SolidBrush(ControlPaint.Light(e.Item.Pressed ? Color.Navy : Color.Black, 0.4f)), rectangle);
+                e.Graphics.FillRectangle(new SolidBrush(ControlPaint.Light(e.Item.Pressed ? Color.FromArgb(40, 40, 40) : Color.Black, 0.4f)), rectangle);
                 e.Graphics.DrawRectangle(new Pen(ControlPaint.Light(Color.Black, 1)), rectangle);
                 return;
             }
