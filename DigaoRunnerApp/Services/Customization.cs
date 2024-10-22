@@ -12,10 +12,10 @@ namespace DigaoRunnerApp.Services
         public bool WordWrap = true;
         public Color ColorBack = Color.FromArgb(30, 30, 30);
 
-        public Color ColorNormal = Color.LimeGreen;
+        public Color ColorNormal = Color.White;
         public Color ColorError = Color.Crimson;
 
-        public Color ColorProcNormal = Color.White;
+        public Color ColorProcNormal = Color.Beige;
         public Color ColorProcError = Color.Brown;
 
         private static string GetFile()

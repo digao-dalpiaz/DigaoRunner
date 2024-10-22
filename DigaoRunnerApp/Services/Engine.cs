@@ -18,7 +18,8 @@ namespace DigaoRunnerApp.Services
             var scriptOptions = ScriptOptions.Default
                 .WithReferences([
                     "System.Drawing",
-                    "System.IO.Compression.ZipFile" //ZipFile needs this to work
+                    "System.IO.Compression.ZipFile", //ZipFile needs this to work
+                    "Renci.SshNet"
                 ])
                 .WithImports([
                     "System",

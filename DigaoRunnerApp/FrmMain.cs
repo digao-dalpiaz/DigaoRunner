@@ -1,6 +1,7 @@
 using DigaoRunnerApp.Exceptions;
 using DigaoRunnerApp.Model;
 using DigaoRunnerApp.Services;
+using DigaoRunnerApp.Theme;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -24,6 +25,10 @@ namespace DigaoRunnerApp
 
             StVersion.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             this.Icon = Icon.ExtractAssociatedIcon(Environment.ProcessPath);
+
+            DarkTitle.UseImmersiveDarkMode(this.Handle);
+            MyToolStripRenderer.ConfigToolStrip(ButtonBar);
+            MyToolStripRenderer.ConfigStatusStrip(StatusBar);
 
             ChangePage(false);
 

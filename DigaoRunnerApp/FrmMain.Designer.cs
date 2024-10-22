@@ -72,6 +72,7 @@
             // StDigaoDalpiaz
             // 
             StDigaoDalpiaz.IsLink = true;
+            StDigaoDalpiaz.LinkColor = Color.Teal;
             StDigaoDalpiaz.Name = "StDigaoDalpiaz";
             StDigaoDalpiaz.Size = new Size(105, 20);
             StDigaoDalpiaz.Text = "Digao Dalpiaz";
@@ -94,6 +95,7 @@
             // 
             // StElapsed
             // 
+            StElapsed.ForeColor = Color.WhiteSmoke;
             StElapsed.Image = Properties.Resources.clock;
             StElapsed.Name = "StElapsed";
             StElapsed.Size = new Size(81, 20);
@@ -116,7 +118,6 @@
             ButtonBar.Items.AddRange(new ToolStripItem[] { BtnRun, BtnCancel, BtnConfig, BtnMore });
             ButtonBar.Location = new Point(0, 0);
             ButtonBar.Name = "ButtonBar";
-            ButtonBar.ShowItemToolTips = false;
             ButtonBar.Size = new Size(987, 27);
             ButtonBar.TabIndex = 2;
             // 
@@ -159,7 +160,7 @@
             // BtnRegisterExtension
             // 
             BtnRegisterExtension.Name = "BtnRegisterExtension";
-            BtnRegisterExtension.Size = new Size(204, 26);
+            BtnRegisterExtension.Size = new Size(199, 26);
             BtnRegisterExtension.Text = "Register .ds files";
             BtnRegisterExtension.Click += BtnRegisterExtension_Click;
             // 
