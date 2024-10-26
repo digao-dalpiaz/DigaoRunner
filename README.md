@@ -191,7 +191,7 @@ int RunProcessReadOutput(string fileName, string arguments, ref string output);
 
 # Running scripts remotely
 
-To run scripts remotely, you can use an SSH connection. The [SSH.NET Library](https://github.com/sshnet/SSH.NET) can be used for SHH and SFTP connection (file transfer).
+To run scripts remotely, you can use an SSH connection. The [SSH.NET Library](https://github.com/sshnet/SSH.NET) can be used for SSH and SFTP connection (file transfer).
 
 SSH and SFTP connection example:
 
