@@ -189,4 +189,29 @@ The returning is the process Exit Code. There is a variable `LastExitCode` avail
 int RunProcessReadOutput(string fileName, string arguments, ref string output);
 ```
 
+# Running scripts remotely
 
+To run scripts remotely, you can use an SSH connection. The [SSH.NET Library](https://github.com/sshnet/SSH.NET) library can be used for SHH and SFTP connection (file transfer).
+
+SSH and SFTP connection example:
+
+```csharp
+@DIGAOSCRIPT
+VERSION=1
+TITLE=SSH and SFTP example
+
+@CODE
+using Renci.SshNet;
+using Renci.SshNet.Common;
+
+using (var ssh = new SshClient("myhost.com", 22, "user", "password")) 
+{
+	var command = ssh.RunCommand("ping 127.0.0.1 -c 6");
+	Echo(command.Result);
+}
+
+using (var sftp = new SftpClient("myhost.com", 22, "user", "password"))
+{
+	sftp.WriteAllText("/home/file1.txt", "Some file text");
+}
+```
