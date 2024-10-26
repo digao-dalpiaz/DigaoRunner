@@ -2,8 +2,6 @@
 
 ## Run scripts locally and remotely
 
-*Note: the functionality to execute scripts remotely is not yet available.*
-
 ![Preview](images/preview_script_run.png)
 
 In my work environment, I frequently need to create scripts to automate processes. Whether it's to copy files from one place to another for deploying an application or even for more complex tasks involving multiple steps, such as installing services, configuring Windows settings, reading files and extracting information, or any other activity that can be automated.
